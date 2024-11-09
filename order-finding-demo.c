@@ -1,4 +1,8 @@
-// https://arxiv.org/abs/2408.11606
+// Find r such that 7^r mod 15 = 1
+
+// See qiskit.org/textbook/ch-algorithms/shor.html
+
+// 7 mod 15 (from qiskit code)
 
 #include <stdio.h>
 #include <stdint.h>
@@ -8,43 +12,18 @@
 void pauli_x(int);
 void pauli_y(int);
 void pauli_z(int);
-void cnot(int, uint32_t);
+void cnot(uint32_t, int);
 void hadamard(int);
-void cphase(double complex, int, uint32_t);
+void cphase(uint32_t, int, double complex);
 void swap(int, int);
+void cswap(uint32_t, int, int);
 void reduce(int);
-void fourier_transform(int);
+void ft(int);
+void ift(int);
 
-void Query(void);
-void Diffuser(void);
-void QuantumAdder(void);
-void InverseQuantumAdder(void);
+void U(int);
 
-#define LENGTH 8192 // 13 qubits
-
-// qubit names
-
-#define X0 0
-#define X1 1
-#define X2 2
-
-#define Y0 3
-#define Y1 4
-#define Y2 5
-
-#define A0 6
-#define A1 7
-
-#define S0 8
-#define S1 9
-#define S2 10
-#define S3 11
-
-#define Q12 12
-
-#define QUERY_MASK (1 << S0 | 1 << S1 | 1 << S2 | 1 << S3)
-
-#define DIFFUSER_MASK (1 << X0 | 1 << X1 | 1 << X2 | 1 << Y0 | 1 << Y1 | 1 << Y2)
+#define LENGTH 4096 // 12 qubits
 
 double complex psi[LENGTH]; // state vector
 double p[LENGTH]; // prob.
@@ -56,32 +35,44 @@ main(int argc, char *argv[])
 
 	psi[0] = 1.0;
 
-	hadamard(X0);
-	hadamard(X1);
-	hadamard(X2);
+	hadamard(0);
+	hadamard(1);
+	hadamard(2);
+	hadamard(3);
+	hadamard(4);
+	hadamard(5);
+	hadamard(6);
+	hadamard(7);
 
-	hadamard(Y0);
-	hadamard(Y1);
-	hadamard(Y2);
+	pauli_x(8);
 
-	pauli_x(Q12);
-	hadamard(Q12);
+	U(0);
 
-	for (i = 0; i < 2; i++) {
-		QuantumAdder();
-		Query();
-		InverseQuantumAdder();
-		Diffuser();
-	}
+	for (i = 0; i < 2; i++)
+		U(1);
+	for (i = 0; i < 4; i++)
+		U(2);
+	for (i = 0; i < 8; i++)
+		U(3);
+	for (i = 0; i < 16; i++)
+		U(4);
+	for (i = 0; i < 32; i++)
+		U(5);
+	for (i = 0; i < 64; i++)
+		U(6);
+	for (i = 0; i < 128; i++)
+		U(7);
 
-	reduce(64); // reduce to 64 eigenstates
+	ift(7);
+
+	reduce(256); // reduce to 8 qubits
 
 	// bar chart
 
 	printf("state  prob.\n");
-	for (i = 0; i < 64; i++) {
-		n = round(250.0 * p[i]);
-		for (j = 0; j < 6; j++)
+	for (i = 0; i < 256; i++) {
+		n = round(100.0 * p[i]);
+		for (j = 0; j < 8; j++)
 			if (i & 1 << j)
 				printf("1");
 			else
@@ -130,7 +121,7 @@ pauli_z(int n)
 }
 
 void
-cnot(int n, uint32_t cbitmask)
+cnot(uint32_t cbitmask, int n)
 {
 	double complex z;
 	uint32_t i, bitmask = 1 << n;
@@ -156,8 +147,10 @@ hadamard(int n)
 		}
 }
 
+// controlled phase
+
 void
-cphase(double complex z, int n, uint32_t cbitmask)
+cphase(uint32_t cbitmask, int n, double complex z)
 {
 	uint32_t i, bitmask = 1 << n;
 	for (i = 0; i < LENGTH; i++)
@@ -178,8 +171,25 @@ swap(int n, int m)
 		}
 }
 
+// controlled swap
+
 void
-fourier_transform(int n)
+cswap(uint32_t cbitmask, int m, int n)
+{
+	double complex z;
+	uint32_t i, mask1 = 1 << m, mask2 = 1 << n;
+	for (i = 0; i < LENGTH; i++)
+		if ((i & cbitmask) == cbitmask && (i & mask1) && !(i & mask2)) {
+			z = psi[i ^ mask1 ^ mask2];
+			psi[i ^ mask1 ^ mask2] = psi[i];
+			psi[i] = z;
+		}
+}
+
+// fourier transform
+
+void
+ft(int n)
 {
 	int i, j;
 	double complex z;
@@ -188,25 +198,27 @@ fourier_transform(int n)
 		for (j = 0; j < i; j++) {
 			z = pow(0.5, i - j) * I * M_PI;
 			z  = cexp(z);
-			cphase(z, i, 1 << j); // controlled phase
+			cphase(1 << j, i, z); // controlled phase
 		}
 	}
 	for (i = 0; i < (n + 1) / 2; i++)
 		swap(i, n - i);
 }
 
+// inverse fourier transform
+
 void
-inverse_fourier_transform(int n)
+ift(int n)
 {
 	int i, j;
 	double complex z;
 	for (i = 0; i < (n + 1) / 2; i++)
 		swap(i, n - i);
 	for (i = 0; i <= n; i++) {
-		for (j = i + 1; j >= 0; j--) {
+		for (j = i - 1; j >= 0; j--) {
 			z = -pow(0.5, i - j) * I * M_PI;
 			z = cexp(z);
-			cphase(z, i, i << j);
+			cphase(1 << j, i, z);
 		}
 		hadamard(i);
 	}
@@ -224,93 +236,13 @@ reduce(int n)
 }
 
 void
-Query(void)
+U(int i)
 {
-	pauli_x(S0);
-	pauli_x(S2);
-	cnot(Q12, QUERY_MASK);
-	pauli_x(S0);
-	pauli_x(S2);
-}
-
-void
-Diffuser(void)
-{
-	hadamard(X0);
-	hadamard(X1);
-	hadamard(X2);
-
-	hadamard(Y0);
-	hadamard(Y1);
-	hadamard(Y2);
-
-	pauli_x(X0);
-	pauli_x(X1);
-	pauli_x(X2);
-
-	pauli_x(Y0);
-	pauli_x(Y1);
-	pauli_x(Y2);
-
-	cnot(Q12, DIFFUSER_MASK);
-
-	pauli_x(X0);
-	pauli_x(X1);
-	pauli_x(X2);
-
-	pauli_x(Y0);
-	pauli_x(Y1);
-	pauli_x(Y2);
-
-	hadamard(X0);
-	hadamard(X1);
-	hadamard(X2);
-
-	hadamard(Y0);
-	hadamard(Y1);
-	hadamard(Y2);
-}
-
-void
-QuantumAdder(void)
-{
-	cnot(S3, 1 << X2);
-	cnot(S3, 1 << Y2);
-	cnot(A0, 1 << X2 | 1 << Y2);
-
-	cnot(S2, 1 << X1);
-	cnot(S2, 1 << Y1);
-	cnot(A1, 1 << X1 | 1 << Y1);
-	cnot(S2, 1 << A0);
-	cnot(A1, 1 << X1 | 1 << A0);
-	cnot(A1, 1 << Y1 | 1 << A0);
-
-	cnot(S1, 1 << X0);
-	cnot(S1, 1 << Y0);
-	cnot(S0, 1 << X0 | 1 << Y0);
-	cnot(S1, 1 << A1);
-	cnot(S0, 1 << X0 | 1 << A1);
-	cnot(S0, 1 << Y0 | 1 << A1);
-}
-
-void
-InverseQuantumAdder(void)
-{
-	cnot(S0, 1 << Y0 | 1 << A1);
-	cnot(S0, 1 << X0 | 1 << A1);
-	cnot(S1, 1 << A1);
-	cnot(S0, 1 << X0 | 1 << Y0);
-	cnot(S1, 1 << Y0);
-	cnot(S1, 1 << X0);
-
-	cnot(A1, 1 << Y1 | 1 << A0);
-	cnot(A1, 1 << X1 | 1 << A0);
-	cnot(S2, 1 << A0);
-	cnot(A1, 1 << X1 | 1 << Y1);
-	cnot(S2, 1 << Y1);
-	cnot(S2, 1 << X1);
-
-	cnot(A0, 1 << X2 | 1 << Y2);
-	cnot(S3, 1 << Y2);
-	cnot(S3, 1 << X2);
+	cswap(1 << i, 10, 11);
+	cswap(1 << i, 9, 10);
+	cswap(1 << i, 8, 9);
+	cnot(1 << i, 8);
+	cnot(1 << i, 9);
+	cnot(1 << i, 10);
+	cnot(1 << i, 11);
 }
