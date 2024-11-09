@@ -75,7 +75,6 @@ main(int argc, char *argv[])
 
 	// bar chart
 
-	printf("state  prob.\n");
 	for (i = 0; i < 256; i++) {
 		n = round(100.0 * p[i]);
 		for (j = 0; j < 8; j++)
