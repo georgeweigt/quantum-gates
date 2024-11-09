@@ -50,20 +50,26 @@ main(int argc, char *argv[])
 
 	for (i = 0; i < 2; i++)
 		U(1);
+
 	for (i = 0; i < 4; i++)
 		U(2);
+
 	for (i = 0; i < 8; i++)
 		U(3);
+
 	for (i = 0; i < 16; i++)
 		U(4);
+
 	for (i = 0; i < 32; i++)
 		U(5);
+
 	for (i = 0; i < 64; i++)
 		U(6);
+
 	for (i = 0; i < 128; i++)
 		U(7);
 
-	ift(7);
+	ift(8); // inverse fourier transform of qubits 0..7
 
 	reduce(256); // reduce to 8 qubits
 
@@ -186,14 +192,14 @@ cswap(uint32_t cbitmask, int m, int n)
 		}
 }
 
-// fourier transform
+// fourier transform of qubits 0 to n - 1 where n is a power of 2
 
 void
 ft(int n)
 {
 	int i, j;
 	double complex z;
-	for (i = n; i >= 0; i--) {
+	for (i = n - 1; i >= 0; i--) {
 		hadamard(i);
 		for (j = 0; j < i; j++) {
 			z = pow(0.5, i - j) * I * M_PI;
@@ -201,20 +207,20 @@ ft(int n)
 			cphase(1 << j, i, z); // controlled phase
 		}
 	}
-	for (i = 0; i < (n + 1) / 2; i++)
-		swap(i, n - i);
+	for (i = 0; i < n / 2; i++)
+		swap(i, n - i - 1);
 }
 
-// inverse fourier transform
+// inverse fourier transform of qubits 0 to n - 1 where n is a power of 2
 
 void
 ift(int n)
 {
 	int i, j;
 	double complex z;
-	for (i = 0; i < (n + 1) / 2; i++)
-		swap(i, n - i);
-	for (i = 0; i <= n; i++) {
+	for (i = 0; i < n / 2; i++)
+		swap(i, n - i - 1);
+	for (i = 0; i < n; i++) {
 		for (j = i - 1; j >= 0; j--) {
 			z = -pow(0.5, i - j) * I * M_PI;
 			z = cexp(z);

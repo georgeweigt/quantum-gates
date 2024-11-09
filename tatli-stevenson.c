@@ -10,10 +10,7 @@ void pauli_y(int);
 void pauli_z(int);
 void cnot(int, uint32_t);
 void hadamard(int);
-void cphase(double complex, int, uint32_t);
-void swap(int, int);
 void reduce(int);
-void fourier_transform(int);
 
 void Query(void);
 void Diffuser(void);
@@ -154,62 +151,6 @@ hadamard(int n)
 			psi[i ^ bitmask] = (z0 + z1)  / M_SQRT2;
 			psi[i] = (z0 - z1) / M_SQRT2;
 		}
-}
-
-void
-cphase(double complex z, int n, uint32_t cbitmask)
-{
-	uint32_t i, bitmask = 1 << n;
-	for (i = 0; i < LENGTH; i++)
-		if ((i & cbitmask) == cbitmask && (i & bitmask))
-			psi[i] *= z;
-}
-
-void
-swap(int n, int m)
-{
-	double complex z;
-	uint32_t i, bitmask = 1 << n | 1 << m;
-	for (i = 0; i < LENGTH; i++)
-		if ((i & bitmask) == bitmask) {
-			z = psi[i ^ bitmask];
-			psi[i ^ bitmask] = psi[i];
-			psi[i] = z;
-		}
-}
-
-void
-fourier_transform(int n)
-{
-	int i, j;
-	double complex z;
-	for (i = n; i >= 0; i--) {
-		hadamard(i);
-		for (j = 0; j < i; j++) {
-			z = pow(0.5, i - j) * I * M_PI;
-			z  = cexp(z);
-			cphase(z, i, 1 << j); // controlled phase
-		}
-	}
-	for (i = 0; i < (n + 1) / 2; i++)
-		swap(i, n - i);
-}
-
-void
-inverse_fourier_transform(int n)
-{
-	int i, j;
-	double complex z;
-	for (i = 0; i < (n + 1) / 2; i++)
-		swap(i, n - i);
-	for (i = 0; i <= n; i++) {
-		for (j = i + 1; j >= 0; j--) {
-			z = -pow(0.5, i - j) * I * M_PI;
-			z = cexp(z);
-			cphase(z, i, i << j);
-		}
-		hadamard(i);
-	}
 }
 
 void
