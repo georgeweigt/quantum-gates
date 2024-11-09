@@ -5,8 +5,6 @@
 #include <math.h>
 #include <complex.h>
 
-#define N 2 // number of iterations
-
 void pauli_x(int);
 void pauli_y(int);
 void pauli_z(int);
@@ -19,9 +17,7 @@ void Diffuser(void);
 void QuantumAdder(void);
 void InverseQuantumAdder(void);
 
-// length of state vector
-
-#define LENGTH 8192 // 8192 = 2^13
+#define LENGTH 8192 // 13 qubits
 
 // qubit names
 
@@ -54,7 +50,6 @@ int
 main(int argc, char *argv[])
 {
 	int i, j, n;
-	double t = 0.0;
 
 	psi[0] = 1.0;
 
@@ -69,7 +64,7 @@ main(int argc, char *argv[])
 	pauli_x(Q12);
 	hadamard(Q12);
 
-	for (i = 0; i < N; i++) {
+	for (i = 0; i < 2; i++) {
 		QuantumAdder();
 		Query();
 		InverseQuantumAdder();
