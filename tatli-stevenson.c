@@ -5,7 +5,7 @@
 #include <math.h>
 #include <complex.h>
 
-#define N 1 // number of iterations
+#define N 2 // number of iterations
 
 void pauli_x(int);
 void pauli_y(int);
@@ -67,43 +67,17 @@ main(int argc, char *argv[])
 	hadamard(Y2);
 
 	pauli_x(Q12);
+	hadamard(Q12);
 
 	for (i = 0; i < N; i++) {
 		QuantumAdder();
-		hadamard(Q12);
 		Query();
 		InverseQuantumAdder();
 		Diffuser();
 	}
 
 	reduce(64); // reduce to 64 eigenstates
-#if 0
-	// reduce
 
-	for (i = 0; i < LENGTH; i++)
-		p[i] = psi[i] * conj(psi[i]);
-
-	for (i = 0; i < 4096; i++)
-		p[i] += p[i + 4096];
-
-	for (i = 0; i < 2048; i++)
-		p[i] += p[i + 2048];
-
-	for (i = 0; i < 1024; i++)
-		p[i] += p[i + 1024];
-
-	for (i = 0; i < 512; i++)
-		p[i] += p[i + 512];
-
-	for (i = 0; i < 256; i++)
-		p[i] += p[i + 256];
-
-	for (i = 0; i < 128; i++)
-		p[i] += p[i + 128];
-
-	for (i = 0; i < 64; i++)
-		p[i] += p[i + 64];
-#endif
 	// bar chart
 
 	printf("state  prob.\n");
