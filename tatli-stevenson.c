@@ -152,6 +152,83 @@ hadamard(int n)
 		}
 }
 
+// controlled phase
+
+void
+cphase(uint32_t cbitmask, int n, double complex z)
+{
+	uint32_t i, bitmask = 1 << n;
+	for (i = 0; i < LENGTH; i++)
+		if ((i & cbitmask) == cbitmask && (i & bitmask))
+			psi[i] *= z;
+}
+
+void
+swap(int n, int m)
+{
+	double complex z;
+	uint32_t i, bitmask = 1 << n | 1 << m;
+	for (i = 0; i < LENGTH; i++)
+		if ((i & bitmask) == bitmask) {
+			z = psi[i ^ bitmask];
+			psi[i ^ bitmask] = psi[i];
+			psi[i] = z;
+		}
+}
+
+// controlled swap
+
+void
+cswap(uint32_t cbitmask, int m, int n)
+{
+	double complex z;
+	uint32_t i, mask1 = 1 << m, mask2 = 1 << n;
+	for (i = 0; i < LENGTH; i++)
+		if ((i & cbitmask) == cbitmask && (i & mask1) && !(i & mask2)) {
+			z = psi[i ^ mask1 ^ mask2];
+			psi[i ^ mask1 ^ mask2] = psi[i];
+			psi[i] = z;
+		}
+}
+
+// fourier transform of qubits 0 to n - 1 where n is a power of 2
+
+void
+ft(int n)
+{
+	int i, j;
+	double complex z;
+	for (i = n - 1; i >= 0; i--) {
+		hadamard(i);
+		for (j = 0; j < i; j++) {
+			z = pow(0.5, i - j) * I * M_PI;
+			z  = cexp(z);
+			cphase(1 << j, i, z); // controlled phase
+		}
+	}
+	for (i = 0; i < n / 2; i++)
+		swap(i, n - i - 1);
+}
+
+// inverse fourier transform of qubits 0 to n - 1 where n is a power of 2
+
+void
+ift(int n)
+{
+	int i, j;
+	double complex z;
+	for (i = 0; i < n / 2; i++)
+		swap(i, n - i - 1);
+	for (i = 0; i < n; i++) {
+		for (j = i - 1; j >= 0; j--) {
+			z = -pow(0.5, i - j) * I * M_PI;
+			z = cexp(z);
+			cphase(1 << j, i, z); // controlled phase
+		}
+		hadamard(i);
+	}
+}
+
 void
 reduce(int n)
 {
