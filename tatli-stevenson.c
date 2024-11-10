@@ -164,11 +164,11 @@ void
 swap(int m, int n)
 {
 	double complex z;
-	uint32_t i, mask1 = 1 << m, mask2 = 1 << n;
+	uint32_t i, mbit = 1 << m, nbit = 1 << n;
 	for (i = 0; i < LENGTH; i++)
-		if ((i & mask1) && !(i & mask2)) {
-			z = psi[i ^ mask1 ^ mask2];
-			psi[i ^ mask1 ^ mask2] = psi[i];
+		if ((i & mbit) && !(i & nbit)) {
+			z = psi[i ^ mbit ^ nbit];
+			psi[i ^ mbit ^ nbit] = psi[i];
 			psi[i] = z;
 		}
 }
@@ -179,11 +179,11 @@ void
 cswap(int m, int n, uint32_t cbitmask)
 {
 	double complex z;
-	uint32_t i, mask1 = 1 << m, mask2 = 1 << n;
+	uint32_t i, mbit = 1 << m, nbit = 1 << n;
 	for (i = 0; i < LENGTH; i++)
-		if ((i & cbitmask) == cbitmask && (i & mask1) && !(i & mask2)) {
-			z = psi[i ^ mask1 ^ mask2];
-			psi[i ^ mask1 ^ mask2] = psi[i];
+		if ((i & cbitmask) == cbitmask && (i & mbit) && !(i & nbit)) {
+			z = psi[i ^ mbit ^ nbit];
+			psi[i ^ mbit ^ nbit] = psi[i];
 			psi[i] = z;
 		}
 }
