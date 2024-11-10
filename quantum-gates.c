@@ -72,6 +72,18 @@ hadamard(int n)
 		}
 }
 
+// use z = I for an S gate
+// use z = cexp(I * M_PI / 4) for a T gate
+
+void
+phase(double complex z, int n)
+{
+	int i, bitmask = 1 << n;
+	for (i = 0; i < LENGTH; i++)
+		if (i & bitmask)
+			psi[i] *= z;
+}
+
 // controlled phase (multiple bits can be set in cbitmask)
 
 void
