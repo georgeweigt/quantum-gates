@@ -6,4 +6,4 @@ gcc order-finding-demo.c
 ./a.out
 ```
 
-The result is a histogram of probabilities for each eigenstate.
+The result is a list of eigenstate probabilities.
