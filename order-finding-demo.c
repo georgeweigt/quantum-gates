@@ -122,6 +122,8 @@ pauli_z(int n)
 			psi[i] = -psi[i];
 }
 
+// multiple bits can be set in cbitmask to implement a toffoli gate
+
 void
 cnot(int n, uint32_t cbitmask)
 {
