@@ -10,7 +10,6 @@ swap
 cswap	controlled swap
 ft	fourier transform
 ift	inverse fourier transform
-reduce	eigenstate reduction
 ```
 
 To build and run

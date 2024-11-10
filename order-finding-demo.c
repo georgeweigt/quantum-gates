@@ -14,9 +14,9 @@ void hadamard(int);
 void cphase(double complex, int, uint32_t);
 void swap(int, int);
 void cswap(int, int, uint32_t);
-void reduce(int);
 void ft(int);
 void ift(int);
+void measure(int);
 
 void U(int);
 
@@ -28,7 +28,7 @@ double p[LENGTH]; // prob.
 int
 main(int argc, char *argv[])
 {
-	int i, j, n;
+	int i;
 
 	psi[0] = 1.0;
 
@@ -68,22 +68,20 @@ main(int argc, char *argv[])
 
 	ift(8); // inverse fourier transform of qubits 0..7
 
-	reduce(256); // reduce to 256 eigenstates
+	measure(8); // measure 8 qubits
+}
 
-	// bar chart
-
-	for (i = 0; i < 256; i++) {
-		n = round(100.0 * p[i]);
-		for (j = 0; j < 8; j++)
-			if (i & 1 << j)
-				printf("1");
-			else
-				printf("0");
-		printf(" %f ", p[i]);
-		for (j = 0; j < n; j++)
-			printf("*");
-		printf("\n");
-	}
+void
+U(int i)
+{
+	uint32_t ctrl = 1 << i;
+	cswap(10, 11, ctrl);
+	cswap(9, 10, ctrl);
+	cswap(8, 9, ctrl);
+	cnot(8, ctrl);
+	cnot(9, ctrl);
+	cnot(10, ctrl);
+	cnot(11, ctrl);
 }
 
 void
@@ -162,6 +160,11 @@ cphase(double complex z, int n, uint32_t cbitmask)
 			psi[i] *= z;
 }
 
+// swap |00> = |00>
+// swap |01> = |10>
+// swap |10> = |01>
+// swap |11> = |11>
+
 void
 swap(int n, int m)
 {
@@ -228,26 +231,49 @@ ift(int n)
 	}
 }
 
-void
-reduce(int n)
-{
-	int i, j, m = LENGTH / n;
-	for (i = 0; i < LENGTH; i++)
-		p[i] = psi[i] * conj(psi[i]);
-	for (i = 0; i < n; i++)
-		for (j = 1; j < m; j++)
-			p[i] += p[i + n * j];
-}
+// measure m qubits
 
 void
-U(int i)
+measure(int m)
 {
-	uint32_t ctrl = 1 << i;
-	cswap(10, 11, ctrl);
-	cswap(9, 10, ctrl);
-	cswap(8, 9, ctrl);
-	cnot(8, ctrl);
-	cnot(9, ctrl);
-	cnot(10, ctrl);
-	cnot(11, ctrl);
+	int i, j, k, n;
+
+	n = 1 << m; // n = 2^m
+
+	// probabilities
+
+	for (i = 0; i < LENGTH; i++)
+		p[i] = psi[i] * conj(psi[i]);
+
+	// sum over don't care bits
+
+	k = LENGTH / n;
+
+	for (i = 0; i < n; i++)
+		for (j = 1; j < k; j++)
+			p[i] += p[i + n * j];
+
+	// histogram
+
+	for (i = 0; i < n; i++) {
+
+		// print eigenstate
+
+		for (j = 0; j < m; j++)
+			if (i & 1 << j)
+				printf("1");
+			else
+				printf("0");
+
+		// print probability
+
+		printf(" %f ", p[i]);
+
+		k = round(100.0 * p[i]);
+
+		for (j = 0; j < k; j++)
+			printf("*");
+
+		printf("\n");
+	}
 }

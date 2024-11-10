@@ -10,7 +10,7 @@ void pauli_y(int);
 void pauli_z(int);
 void cnot(int, uint32_t);
 void hadamard(int);
-void reduce(int);
+void measure(int);
 
 void Query(void);
 void Diffuser(void);
@@ -49,9 +49,9 @@ double p[LENGTH]; // prob.
 int
 main(int argc, char *argv[])
 {
-	int i, j, n;
+	int i;
 
-	psi[0] = 1.0;
+	psi[0] = 1.0; // ground state |0...0>
 
 	hadamard(X0);
 	hadamard(X1);
@@ -71,22 +71,7 @@ main(int argc, char *argv[])
 		Diffuser();
 	}
 
-	reduce(64); // reduce to 64 eigenstates
-
-	// bar chart
-
-	for (i = 0; i < 64; i++) {
-		n = round(250.0 * p[i]);
-		for (j = 0; j < 6; j++)
-			if (i & 1 << j)
-				printf("1");
-			else
-				printf("0");
-		printf(" %f ", p[i]);
-		for (j = 0; j < n; j++)
-			printf("*");
-		printf("\n");
-	}
+	measure(6); // measure 6 qubits
 }
 
 void
@@ -165,6 +150,11 @@ cphase(double complex z, int n, uint32_t cbitmask)
 			psi[i] *= z;
 }
 
+// swap |00> = |00>
+// swap |01> = |10>
+// swap |10> = |01>
+// swap |11> = |11>
+
 void
 swap(int n, int m)
 {
@@ -231,15 +221,51 @@ ift(int n)
 	}
 }
 
+// measure m qubits
+
 void
-reduce(int n)
+measure(int m)
 {
-	int i, j, m = LENGTH / n;
+	int i, j, k, n;
+
+	n = 1 << m; // n = 2^m
+
+	// probabilities
+
 	for (i = 0; i < LENGTH; i++)
 		p[i] = psi[i] * conj(psi[i]);
+
+	// sum over don't care bits
+
+	k = LENGTH / n;
+
 	for (i = 0; i < n; i++)
-		for (j = 1; j < m; j++)
+		for (j = 1; j < k; j++)
 			p[i] += p[i + n * j];
+
+	// histogram
+
+	for (i = 0; i < n; i++) {
+
+		// print eigenstate
+
+		for (j = 0; j < m; j++)
+			if (i & 1 << j)
+				printf("1");
+			else
+				printf("0");
+
+		// print probability
+
+		printf(" %f ", p[i]);
+
+		k = round(100.0 * p[i]);
+
+		for (j = 0; j < k; j++)
+			printf("*");
+
+		printf("\n");
+	}
 }
 
 void
