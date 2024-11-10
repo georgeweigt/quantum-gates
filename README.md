@@ -4,12 +4,12 @@ pauli_x
 pauli_y
 pauli_z
 hadamard
-cnot	controlled not and toffoli
-cphase	controlled phase
+cnot		controlled not and toffoli
+cphase		controlled phase
 swap
-cswap	controlled swap
-ft	fourier transform
-ift	inverse fourier transform
+cswap		controlled swap
+ft		fourier transform
+ift		inverse fourier transform
 ```
 
 To build and run
