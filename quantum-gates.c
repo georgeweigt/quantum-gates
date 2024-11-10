@@ -6,7 +6,7 @@
 #include <complex.h>
 
 double complex psi[LENGTH]; // state vector
-double p[LENGTH]; // prob.
+double p[LENGTH]; // probability vector
 
 void
 pauli_x(int n)
