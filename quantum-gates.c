@@ -191,12 +191,9 @@ measure(int m)
 		// print probability
 
 		printf(" %f ", p[i]);
-
 		k = round(100.0 * p[i]);
-
 		for (j = 0; j < k; j++)
 			printf("*");
-
 		printf("\n");
 	}
 }
