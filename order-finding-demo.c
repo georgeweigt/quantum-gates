@@ -1,8 +1,5 @@
 // Find r such that 7^r mod 15 = 1
-
 // See qiskit.org/textbook/ch-algorithms/shor.html
-
-// 7 mod 15 (from qiskit code)
 
 #include <stdio.h>
 #include <stdint.h>
@@ -71,7 +68,7 @@ main(int argc, char *argv[])
 
 	ift(8); // inverse fourier transform of qubits 0..7
 
-	reduce(256); // reduce to 8 qubits
+	reduce(256); // reduce to 256 eigenstates
 
 	// bar chart
 
