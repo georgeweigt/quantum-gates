@@ -37,7 +37,7 @@ main(int argc, char *argv[])
 {
 	int i;
 
-	psi[0] = 1.0; // ground state |0...0>
+	psi[0] = 1.0; // ground state |0000000000000>
 
 	hadamard(X0);
 	hadamard(X1);
