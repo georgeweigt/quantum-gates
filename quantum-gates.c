@@ -116,7 +116,7 @@ cswap(int m, int n, int cbitmask)
 		}
 }
 
-// fourier transform of qubits 0 to n - 1 where n is a power of 2
+// fourier transform of qubits 0 to n - 1
 
 void
 ft(int n)
@@ -135,7 +135,7 @@ ft(int n)
 		swap(i, n - i - 1);
 }
 
-// inverse fourier transform of qubits 0 to n - 1 where n is a power of 2
+// inverse fourier transform of qubits 0 to n - 1
 
 void
 ift(int n)
