@@ -11,7 +11,7 @@ main(int argc, char *argv[])
 {
 	int i;
 
-	psi[0] = 1.0;
+	psi[0] = 1.0; // ground state |000000000000>
 
 	hadamard(0);
 	hadamard(1);
@@ -47,7 +47,7 @@ main(int argc, char *argv[])
 	for (i = 0; i < 128; i++)
 		U(7);
 
-	ift(8); // inverse fourier transform of qubits 0..7
+	ift(8); // inverse fourier transform of qubits 0 to 7
 
 	measure(8); // measure 8 qubits
 }
