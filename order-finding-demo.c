@@ -9,11 +9,11 @@
 void pauli_x(int);
 void pauli_y(int);
 void pauli_z(int);
-void cnot(uint32_t, int);
+void cnot(int, uint32_t);
 void hadamard(int);
-void cphase(uint32_t, int, double complex);
+void cphase(double complex, int, uint32_t);
 void swap(int, int);
-void cswap(uint32_t, int, int);
+void cswap(int, int, uint32_t);
 void reduce(int);
 void ft(int);
 void ift(int);
@@ -123,7 +123,7 @@ pauli_z(int n)
 }
 
 void
-cnot(uint32_t cbitmask, int n)
+cnot(int n, uint32_t cbitmask)
 {
 	double complex z;
 	uint32_t i, bitmask = 1 << n;
@@ -152,7 +152,7 @@ hadamard(int n)
 // controlled phase
 
 void
-cphase(uint32_t cbitmask, int n, double complex z)
+cphase(double complex z, int n, uint32_t cbitmask)
 {
 	uint32_t i, bitmask = 1 << n;
 	for (i = 0; i < LENGTH; i++)
@@ -176,7 +176,7 @@ swap(int n, int m)
 // controlled swap
 
 void
-cswap(uint32_t cbitmask, int m, int n)
+cswap(int m, int n, uint32_t cbitmask)
 {
 	double complex z;
 	uint32_t i, mask1 = 1 << m, mask2 = 1 << n;
@@ -200,7 +200,7 @@ ft(int n)
 		for (j = 0; j < i; j++) {
 			z = pow(0.5, i - j) * I * M_PI;
 			z  = cexp(z);
-			cphase(1 << j, i, z); // controlled phase
+			cphase(z, i, 1 << j);
 		}
 	}
 	for (i = 0; i < n / 2; i++)
@@ -220,7 +220,7 @@ ift(int n)
 		for (j = i - 1; j >= 0; j--) {
 			z = -pow(0.5, i - j) * I * M_PI;
 			z = cexp(z);
-			cphase(1 << j, i, z);
+			cphase(z, i, 1 << j);
 		}
 		hadamard(i);
 	}
@@ -240,11 +240,12 @@ reduce(int n)
 void
 U(int i)
 {
-	cswap(1 << i, 10, 11);
-	cswap(1 << i, 9, 10);
-	cswap(1 << i, 8, 9);
-	cnot(1 << i, 8);
-	cnot(1 << i, 9);
-	cnot(1 << i, 10);
-	cnot(1 << i, 11);
+	uint32_t ctrl = 1 << i;
+	cswap(10, 11, ctrl);
+	cswap(9, 10, ctrl);
+	cswap(8, 9, ctrl);
+	cnot(8, ctrl);
+	cnot(9, ctrl);
+	cnot(10, ctrl);
+	cnot(11, ctrl);
 }

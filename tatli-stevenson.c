@@ -155,7 +155,7 @@ hadamard(int n)
 // controlled phase
 
 void
-cphase(uint32_t cbitmask, int n, double complex z)
+cphase(double complex z, int n, uint32_t cbitmask)
 {
 	uint32_t i, bitmask = 1 << n;
 	for (i = 0; i < LENGTH; i++)
@@ -179,7 +179,7 @@ swap(int n, int m)
 // controlled swap
 
 void
-cswap(uint32_t cbitmask, int m, int n)
+cswap(int m, int n, uint32_t cbitmask)
 {
 	double complex z;
 	uint32_t i, mask1 = 1 << m, mask2 = 1 << n;
@@ -203,7 +203,7 @@ ft(int n)
 		for (j = 0; j < i; j++) {
 			z = pow(0.5, i - j) * I * M_PI;
 			z  = cexp(z);
-			cphase(1 << j, i, z); // controlled phase
+			cphase(z, i, 1 << j);
 		}
 	}
 	for (i = 0; i < n / 2; i++)
@@ -223,7 +223,7 @@ ift(int n)
 		for (j = i - 1; j >= 0; j--) {
 			z = -pow(0.5, i - j) * I * M_PI;
 			z = cexp(z);
-			cphase(1 << j, i, z); // controlled phase
+			cphase(z, i, 1 << j);
 		}
 		hadamard(i);
 	}
