@@ -1,7 +1,6 @@
 // define LENGTH as 2^n where n is the number of qubits
 
 #include <stdio.h>
-#include <stdint.h>
 #include <math.h>
 #include <complex.h>
 
@@ -11,8 +10,8 @@ double p[LENGTH]; // probability vector
 void
 pauli_x(int n)
 {
+	int i, bitmask = 1 << n;
 	double complex z;
-	uint32_t i, bitmask = 1 << n;
 	for (i = 0; i < LENGTH; i++)
 		if (i & bitmask) {
 			z = psi[i ^ bitmask];
@@ -24,8 +23,8 @@ pauli_x(int n)
 void
 pauli_y(int n)
 {
+	int i, bitmask = 1 << n;
 	double complex z0, z1;
-	uint32_t i, bitmask = 1 << n;
 	for (i = 0; i < LENGTH; i++)
 		if (i & bitmask) {
 			z0 = psi[i ^ bitmask];
@@ -38,7 +37,7 @@ pauli_y(int n)
 void
 pauli_z(int n)
 {
-	uint32_t i, bitmask = 1 << n;
+	int i, bitmask = 1 << n;
 	for (i = 0; i < LENGTH; i++)
 		if (i & bitmask)
 			psi[i] = -psi[i];
@@ -47,10 +46,10 @@ pauli_z(int n)
 // multiple bits can be set in cbitmask to implement a toffoli gate
 
 void
-cnot(int n, uint32_t cbitmask)
+cnot(int n, int cbitmask)
 {
+	int i, bitmask = 1 << n;
 	double complex z;
-	uint32_t i, bitmask = 1 << n;
 	for (i = 0; i < LENGTH; i++)
 		if ((i & cbitmask) == cbitmask && (i & bitmask)) {
 			z = psi[i ^ bitmask];
@@ -62,8 +61,8 @@ cnot(int n, uint32_t cbitmask)
 void
 hadamard(int n)
 {
+	int i, bitmask = 1 << n;
 	double complex z0, z1;
-	uint32_t i, bitmask = 1 << n;
 	for (i = 0; i < LENGTH; i++)
 		if (i & bitmask) {
 			z0 = psi[i ^ bitmask];
@@ -76,9 +75,9 @@ hadamard(int n)
 // controlled phase (multiple bits can be set in cbitmask)
 
 void
-cphase(double complex z, int n, uint32_t cbitmask)
+cphase(double complex z, int n, int cbitmask)
 {
-	uint32_t i, bitmask = 1 << n;
+	int i, bitmask = 1 << n;
 	for (i = 0; i < LENGTH; i++)
 		if ((i & cbitmask) == cbitmask && (i & bitmask))
 			psi[i] *= z;
@@ -92,8 +91,8 @@ cphase(double complex z, int n, uint32_t cbitmask)
 void
 swap(int m, int n)
 {
+	int i, mbit = 1 << m, nbit = 1 << n;
 	double complex z;
-	uint32_t i, mbit = 1 << m, nbit = 1 << n;
 	for (i = 0; i < LENGTH; i++)
 		if ((i & mbit) && !(i & nbit)) {
 			z = psi[i ^ mbit ^ nbit];
@@ -105,10 +104,10 @@ swap(int m, int n)
 // controlled swap (multiple bits can be set in cbitmask)
 
 void
-cswap(int m, int n, uint32_t cbitmask)
+cswap(int m, int n, int cbitmask)
 {
+	int i, mbit = 1 << m, nbit = 1 << n;
 	double complex z;
-	uint32_t i, mbit = 1 << m, nbit = 1 << n;
 	for (i = 0; i < LENGTH; i++)
 		if ((i & cbitmask) == cbitmask && (i & mbit) && !(i & nbit)) {
 			z = psi[i ^ mbit ^ nbit];

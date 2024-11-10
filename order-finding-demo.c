@@ -56,12 +56,12 @@ main(int argc, char *argv[])
 void
 U(int i)
 {
-	uint32_t ctrl = 1 << i;
-	cswap(10, 11, ctrl);
-	cswap(9, 10, ctrl);
-	cswap(8, 9, ctrl);
-	cnot(8, ctrl);
-	cnot(9, ctrl);
-	cnot(10, ctrl);
-	cnot(11, ctrl);
+	int ctrlbit = 1 << i;
+	cswap(10, 11, ctrlbit);
+	cswap(9, 10, ctrlbit);
+	cswap(8, 9, ctrlbit);
+	cnot(8, ctrlbit);
+	cnot(9, ctrlbit);
+	cnot(10, ctrlbit);
+	cnot(11, ctrlbit);
 }
