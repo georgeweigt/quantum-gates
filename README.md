@@ -13,7 +13,7 @@ ft		Fourier transform
 ift		Inverse fourier transform
 ```
 
-To build and run
+To build and run a demo
 ```
 gcc order-finding-demo.c
 ./a.out
