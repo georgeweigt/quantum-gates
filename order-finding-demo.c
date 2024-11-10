@@ -166,14 +166,14 @@ cphase(double complex z, int n, uint32_t cbitmask)
 // swap |11> = |11>
 
 void
-swap(int n, int m)
+swap(int m, int n)
 {
 	double complex z;
-	uint32_t i, bitmask = 1 << n | 1 << m;
+	uint32_t i, mask1 = 1 << m, mask2 = 1 << n;
 	for (i = 0; i < LENGTH; i++)
-		if ((i & bitmask) == bitmask) {
-			z = psi[i ^ bitmask];
-			psi[i ^ bitmask] = psi[i];
+		if ((i & mask1) && !(i & mask2)) {
+			z = psi[i ^ mask1 ^ mask2];
+			psi[i ^ mask1 ^ mask2] = psi[i];
 			psi[i] = z;
 		}
 }
