@@ -73,7 +73,7 @@ hadamard(int n)
 		}
 }
 
-// controlled phase
+// controlled phase (multiple bits can be set in cbitmask)
 
 void
 cphase(double complex z, int n, uint32_t cbitmask)
@@ -102,7 +102,7 @@ swap(int m, int n)
 		}
 }
 
-// controlled swap
+// controlled swap (multiple bits can be set in cbitmask)
 
 void
 cswap(int m, int n, uint32_t cbitmask)
