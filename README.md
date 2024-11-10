@@ -4,7 +4,7 @@ pauli_x
 pauli_y
 pauli_z
 hadamard
-cnot
+cnot	controlled not and toffoli
 cphase	controlled phase
 swap
 cswap	controlled swap
