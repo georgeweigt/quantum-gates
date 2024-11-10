@@ -1,4 +1,4 @@
-The following quantum gates are implemented in C code.
+The following quantum gates are implemented in quantum-gates.c
 ```
 pauli_x
 pauli_y
