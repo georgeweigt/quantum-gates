@@ -21,3 +21,5 @@ gcc two-bit-demo.c
 #
 
 [Quantum logic gate - Wikipedia](https://en.wikipedia.org/wiki/Quantum_logic_gate)
+
+[Qubit - Wikipedia](https://en.wikipedia.org/wiki/Qubit)
