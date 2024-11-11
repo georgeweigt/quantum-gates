@@ -1,5 +1,3 @@
-// https://arxiv.org/abs/2408.11606
-
 #define LENGTH 4 // 2 qubits (2^2 = 4)
 
 #include "quantum-gates.c"
