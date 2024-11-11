@@ -1,8 +1,8 @@
-// define LENGTH as 2^n where n is the number of qubits
-
 #include <stdio.h>
 #include <math.h>
 #include <complex.h>
+
+#define LENGTH (1 << NUMQBITS)
 
 double complex psi[LENGTH]; // state vector
 double p[LENGTH]; // probability vector
@@ -191,17 +191,11 @@ measure(int m)
 	// histogram
 
 	for (i = 0; i < n; i++) {
-
-		// print eigenstate
-
-		for (j = 0; j < m; j++)
-			if (i & 1 << j)
+		for (j = m - 1; j >= 0; j--)
+			if (i & (1 << j))
 				printf("1");
 			else
 				printf("0");
-
-		// print probability
-
 		printf(" %f ", p[i]);
 		k = round(100.0 * p[i]);
 		for (j = 0; j < k; j++)
@@ -215,7 +209,13 @@ measure(int m)
 void
 peek(void)
 {
-	int i;
-	for (i = 0; i < LENGTH; i++)
-		printf("%d %+f%+fI\n", i, creal(psi[i]), cimag(psi[i]));
+	int i, j;
+	for (i = 0; i < LENGTH; i++) {
+		for (j = NUMQBITS - 1; j >= 0; j--)
+			if (i & (1 << j))
+				printf("1");
+			else
+				printf("0");
+		printf(" %+f%+fI\n", creal(psi[i]), cimag(psi[i]));
+	}
 }

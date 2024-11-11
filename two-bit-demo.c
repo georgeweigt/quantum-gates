@@ -1,4 +1,4 @@
-#define LENGTH 4 // 2 qubits (2^2 = 4)
+#define NUMQBITS 2
 
 #include "quantum-gates.c"
 

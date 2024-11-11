@@ -1,7 +1,7 @@
 // Find r such that 7^r mod 15 = 1
 // See qiskit.org/textbook/ch-algorithms/shor.html
 
-#define LENGTH 4096 // 12 qubits (2^12 = 4096)
+#define NUMQBITS 12
 
 #include "quantum-gates.c"
 

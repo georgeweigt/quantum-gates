@@ -1,6 +1,6 @@
 // https://arxiv.org/abs/2408.11606
 
-#define LENGTH 8192 // 13 qubits (2^13 = 8192)
+#define NUMQBITS 13
 
 #include "quantum-gates.c"
 
