@@ -191,7 +191,7 @@ measure(int m)
 	// histogram
 
 	for (i = 0; i < n; i++) {
-		for (j = m - 1; j >= 0; j--)
+		for (j = 0; j < m; j++)
 			if (i & (1 << j))
 				printf("1");
 			else
@@ -211,7 +211,7 @@ peek(void)
 {
 	int i, j;
 	for (i = 0; i < LENGTH; i++) {
-		for (j = NUMQBITS - 1; j >= 0; j--)
+		for (j = 0; j < NUMQBITS; j++)
 			if (i & (1 << j))
 				printf("1");
 			else
