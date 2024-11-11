@@ -209,3 +209,13 @@ measure(int m)
 		printf("\n");
 	}
 }
+
+// inspect state vector
+
+void
+peek(void)
+{
+	int i;
+	for (i = 0; i < LENGTH; i++)
+		printf("%d %+f%+fI\n", i, creal(psi[i]), cimag(psi[i]));
+}
