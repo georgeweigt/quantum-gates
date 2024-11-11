@@ -15,7 +15,7 @@ ift		Inverse fourier transform
 
 To build and run a demo
 ```
-gcc order-finding-demo.c
+gcc two-bit-demo.c
 ./a.out
 ```
 
