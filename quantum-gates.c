@@ -8,7 +8,7 @@ double complex psi[LENGTH]; // state vector
 double p[LENGTH]; // probability vector
 
 void
-pauli_x(int n)
+xgate(int n)
 {
 	int i, bitmask = 1 << n;
 	double complex z;
@@ -21,7 +21,7 @@ pauli_x(int n)
 }
 
 void
-pauli_y(int n)
+ygate(int n)
 {
 	int i, bitmask = 1 << n;
 	double complex z0, z1;
@@ -35,7 +35,7 @@ pauli_y(int n)
 }
 
 void
-pauli_z(int n)
+zgate(int n)
 {
 	int i, bitmask = 1 << n;
 	for (i = 0; i < LENGTH; i++)
@@ -46,7 +46,7 @@ pauli_z(int n)
 // controlled x (multiple bits can be set in cbitmask)
 
 void
-cx(int n, int cbitmask)
+cxgate(int n, int cbitmask)
 {
 	int i, bitmask = 1 << n;
 	double complex z;
@@ -61,7 +61,7 @@ cx(int n, int cbitmask)
 // controlled y	(multiple bits can be set in cbitmask)
 
 void
-cy(int n, int cbitmask)
+cygate(int n, int cbitmask)
 {
 	int i, bitmask = 1 << n;
 	double complex z0, z1;
@@ -77,7 +77,7 @@ cy(int n, int cbitmask)
 // controlled z (multiple bits can be set in cbitmask)
 
 void
-cz(int n, int cbitmask)
+czgate(int n, int cbitmask)
 {
 	int i, bitmask = 1 << n;
 	for (i = 0; i < LENGTH; i++)

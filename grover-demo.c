@@ -21,8 +21,8 @@ main()
 
 	// oracle
 
-	cz(BIT2, 1 << BIT0);
-	cz(BIT2, 1 << BIT1);
+	czgate(BIT2, 1 << BIT0);
+	czgate(BIT2, 1 << BIT1);
 
 	// amplification (diffuser)
 
@@ -30,19 +30,19 @@ main()
 	hadamard(BIT1);
 	hadamard(BIT2);
 
-	pauli_x(BIT0);
-	pauli_x(BIT1);
-	pauli_x(BIT2);
+	xgate(BIT0);
+	xgate(BIT1);
+	xgate(BIT2);
 
-	cz(BIT2, 1 << BIT1 | 1 << BIT0);
+	czgate(BIT2, 1 << BIT1 | 1 << BIT0);
 
-	pauli_x(BIT0);
-	pauli_x(BIT1);
-	pauli_x(BIT2);
+	xgate(BIT0);
+	xgate(BIT1);
+	xgate(BIT2);
 
 	hadamard(BIT0);
 	hadamard(BIT1);
 	hadamard(BIT2);
 
-	measure(3); // measure 3 bits
+	measure(3); // measure 3 qubits
 }

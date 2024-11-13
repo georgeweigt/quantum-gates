@@ -48,7 +48,7 @@ main()
 	hadamard(Y1);
 	hadamard(Y2);
 
-	pauli_x(Q12);
+	xgate(Q12);
 	hadamard(Q12);
 
 	for (i = 0; i < 2; i++) {
@@ -64,11 +64,11 @@ main()
 void
 Query(void)
 {
-	pauli_x(S0);
-	pauli_x(S2);
-	cx(Q12, QUERY_MASK);
-	pauli_x(S0);
-	pauli_x(S2);
+	xgate(S0);
+	xgate(S2);
+	cxgate(Q12, QUERY_MASK);
+	xgate(S0);
+	xgate(S2);
 }
 
 void
@@ -82,23 +82,23 @@ Diffuser(void)
 	hadamard(Y1);
 	hadamard(Y2);
 
-	pauli_x(X0);
-	pauli_x(X1);
-	pauli_x(X2);
+	xgate(X0);
+	xgate(X1);
+	xgate(X2);
 
-	pauli_x(Y0);
-	pauli_x(Y1);
-	pauli_x(Y2);
+	xgate(Y0);
+	xgate(Y1);
+	xgate(Y2);
 
-	cx(Q12, DIFFUSER_MASK);
+	cxgate(Q12, DIFFUSER_MASK);
 
-	pauli_x(X0);
-	pauli_x(X1);
-	pauli_x(X2);
+	xgate(X0);
+	xgate(X1);
+	xgate(X2);
 
-	pauli_x(Y0);
-	pauli_x(Y1);
-	pauli_x(Y2);
+	xgate(Y0);
+	xgate(Y1);
+	xgate(Y2);
 
 	hadamard(X0);
 	hadamard(X1);
@@ -112,43 +112,43 @@ Diffuser(void)
 void
 QuantumAdder(void)
 {
-	cx(S3, 1 << X2);
-	cx(S3, 1 << Y2);
-	cx(A0, 1 << X2 | 1 << Y2);
+	cxgate(S3, 1 << X2);
+	cxgate(S3, 1 << Y2);
+	cxgate(A0, 1 << X2 | 1 << Y2);
 
-	cx(S2, 1 << X1);
-	cx(S2, 1 << Y1);
-	cx(A1, 1 << X1 | 1 << Y1);
-	cx(S2, 1 << A0);
-	cx(A1, 1 << X1 | 1 << A0);
-	cx(A1, 1 << Y1 | 1 << A0);
+	cxgate(S2, 1 << X1);
+	cxgate(S2, 1 << Y1);
+	cxgate(A1, 1 << X1 | 1 << Y1);
+	cxgate(S2, 1 << A0);
+	cxgate(A1, 1 << X1 | 1 << A0);
+	cxgate(A1, 1 << Y1 | 1 << A0);
 
-	cx(S1, 1 << X0);
-	cx(S1, 1 << Y0);
-	cx(S0, 1 << X0 | 1 << Y0);
-	cx(S1, 1 << A1);
-	cx(S0, 1 << X0 | 1 << A1);
-	cx(S0, 1 << Y0 | 1 << A1);
+	cxgate(S1, 1 << X0);
+	cxgate(S1, 1 << Y0);
+	cxgate(S0, 1 << X0 | 1 << Y0);
+	cxgate(S1, 1 << A1);
+	cxgate(S0, 1 << X0 | 1 << A1);
+	cxgate(S0, 1 << Y0 | 1 << A1);
 }
 
 void
 InverseQuantumAdder(void)
 {
-	cx(S0, 1 << Y0 | 1 << A1);
-	cx(S0, 1 << X0 | 1 << A1);
-	cx(S1, 1 << A1);
-	cx(S0, 1 << X0 | 1 << Y0);
-	cx(S1, 1 << Y0);
-	cx(S1, 1 << X0);
+	cxgate(S0, 1 << Y0 | 1 << A1);
+	cxgate(S0, 1 << X0 | 1 << A1);
+	cxgate(S1, 1 << A1);
+	cxgate(S0, 1 << X0 | 1 << Y0);
+	cxgate(S1, 1 << Y0);
+	cxgate(S1, 1 << X0);
 
-	cx(A1, 1 << Y1 | 1 << A0);
-	cx(A1, 1 << X1 | 1 << A0);
-	cx(S2, 1 << A0);
-	cx(A1, 1 << X1 | 1 << Y1);
-	cx(S2, 1 << Y1);
-	cx(S2, 1 << X1);
+	cxgate(A1, 1 << Y1 | 1 << A0);
+	cxgate(A1, 1 << X1 | 1 << A0);
+	cxgate(S2, 1 << A0);
+	cxgate(A1, 1 << X1 | 1 << Y1);
+	cxgate(S2, 1 << Y1);
+	cxgate(S2, 1 << X1);
 
-	cx(A0, 1 << X2 | 1 << Y2);
-	cx(S3, 1 << Y2);
-	cx(S3, 1 << X2);
+	cxgate(A0, 1 << X2 | 1 << Y2);
+	cxgate(S3, 1 << Y2);
+	cxgate(S3, 1 << X2);
 }

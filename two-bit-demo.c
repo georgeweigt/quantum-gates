@@ -11,11 +11,11 @@ main()
 	peek();
 
 	printf("Invert bit 0\n");
-	pauli_x(0);
+	xgate(0);
 	peek();
 
 	printf("Invert bit 1\n");
-	pauli_x(1);
+	xgate(1);
 	peek();
 
 	printf("Fourier transform\n");
@@ -23,5 +23,5 @@ main()
 	peek();
 
 	printf("Measure\n");
-	measure(2);
+	measure(2); // measure 2 qubits
 }

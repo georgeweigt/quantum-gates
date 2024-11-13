@@ -23,7 +23,7 @@ main()
 	hadamard(6);
 	hadamard(7);
 
-	pauli_x(8);
+	xgate(8);
 
 	U(0);
 
@@ -60,8 +60,8 @@ U(int i)
 	cswap(10, 11, ctrlbit);
 	cswap(9, 10, ctrlbit);
 	cswap(8, 9, ctrlbit);
-	cx(8, ctrlbit);
-	cx(9, ctrlbit);
-	cx(10, ctrlbit);
-	cx(11, ctrlbit);
+	cxgate(8, ctrlbit);
+	cxgate(9, ctrlbit);
+	cxgate(10, ctrlbit);
+	cxgate(11, ctrlbit);
 }

@@ -1,13 +1,13 @@
 The following quantum gates are implemented in quantum-gates.c
 ```
-pauli_x
-pauli_y
-pauli_z
-cx		Controlled X and Toffoli
-cy		Controlled Y
-cz		Controlled Z
+xgate
+ygate
+zgate
+cxgate		Controlled X and Toffoli
+cygate		Controlled Y
+czgate		Controlled Z
 hadamard
-phase		S and T gates
+phase		S, T, and general phase gate
 cphase		Controlled phase
 swap		Swap qubits
 cswap		Controlled swap
