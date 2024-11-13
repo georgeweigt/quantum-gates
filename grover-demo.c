@@ -4,6 +4,10 @@
 
 #include "quantum-gates.c"
 
+#define BIT0 0
+#define BIT1 1
+#define BIT2 2
+
 int
 main()
 {
@@ -11,34 +15,34 @@ main()
 
 	// init
 
-	hadamard(0);
-	hadamard(1);
-	hadamard(2);
+	hadamard(BIT0);
+	hadamard(BIT1);
+	hadamard(BIT2);
 
 	// oracle
 
-	cz(2, 1 << 0); // 2nd arg is bitmask
-	cz(2, 1 << 1); // 2nd arg is bitmask
+	cz(BIT2, 1 << BIT0);
+	cz(BIT2, 1 << BIT1);
 
 	// amplification (diffuser)
 
-	hadamard(0);
-	hadamard(1);
-	hadamard(2);
+	hadamard(BIT0);
+	hadamard(BIT1);
+	hadamard(BIT2);
 
-	pauli_x(0);
-	pauli_x(1);
-	pauli_x(2);
+	pauli_x(BIT0);
+	pauli_x(BIT1);
+	pauli_x(BIT2);
 
-	cz(2, 1 << 1 | 1 << 0); // 2nd arg is bitmask
+	cz(BIT2, 1 << BIT1 | 1 << BIT0);
 
-	pauli_x(0);
-	pauli_x(1);
-	pauli_x(2);
+	pauli_x(BIT0);
+	pauli_x(BIT1);
+	pauli_x(BIT2);
 
-	hadamard(0);
-	hadamard(1);
-	hadamard(2);
+	hadamard(BIT0);
+	hadamard(BIT1);
+	hadamard(BIT2);
 
-	measure(3);
+	measure(3); // measure 3 bits
 }
