@@ -40,7 +40,7 @@ pauli_z(int n)
 	int i, bitmask = 1 << n;
 	for (i = 0; i < LENGTH; i++)
 		if (i & bitmask)
-			psi[i] = -psi[i];
+			psi[i] *= -1.0;
 }
 
 // multiple bits can be set in cbitmask to implement a toffoli gate
@@ -56,6 +56,17 @@ cnot(int n, int cbitmask)
 			psi[i ^ bitmask] = psi[i];
 			psi[i] = z;
 		}
+}
+
+// controlled z (multiple bits can be set in cbitmask)
+
+void
+cz(int n, int cbitmask)
+{
+	int i, bitmask = 1 << n;
+	for (i = 0; i < LENGTH; i++)
+		if ((i & cbitmask) == cbitmask && (i & bitmask))
+			psi[i] *= -1.0;
 }
 
 void
