@@ -3,9 +3,10 @@ The following quantum gates are implemented in quantum-gates.c
 pauli_x
 pauli_y
 pauli_z
-hadamard
-cnot		Controlled not and Toffoli
+cx		Controlled X and Toffoli
+cy		Controlled Y
 cz		Controlled Z
+hadamard
 phase		S and T gates
 cphase		Controlled phase
 swap		Swap qubits

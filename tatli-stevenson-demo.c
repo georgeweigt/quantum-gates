@@ -66,7 +66,7 @@ Query(void)
 {
 	pauli_x(S0);
 	pauli_x(S2);
-	cnot(Q12, QUERY_MASK);
+	cx(Q12, QUERY_MASK);
 	pauli_x(S0);
 	pauli_x(S2);
 }
@@ -90,7 +90,7 @@ Diffuser(void)
 	pauli_x(Y1);
 	pauli_x(Y2);
 
-	cnot(Q12, DIFFUSER_MASK);
+	cx(Q12, DIFFUSER_MASK);
 
 	pauli_x(X0);
 	pauli_x(X1);
@@ -112,43 +112,43 @@ Diffuser(void)
 void
 QuantumAdder(void)
 {
-	cnot(S3, 1 << X2);
-	cnot(S3, 1 << Y2);
-	cnot(A0, 1 << X2 | 1 << Y2);
+	cx(S3, 1 << X2);
+	cx(S3, 1 << Y2);
+	cx(A0, 1 << X2 | 1 << Y2);
 
-	cnot(S2, 1 << X1);
-	cnot(S2, 1 << Y1);
-	cnot(A1, 1 << X1 | 1 << Y1);
-	cnot(S2, 1 << A0);
-	cnot(A1, 1 << X1 | 1 << A0);
-	cnot(A1, 1 << Y1 | 1 << A0);
+	cx(S2, 1 << X1);
+	cx(S2, 1 << Y1);
+	cx(A1, 1 << X1 | 1 << Y1);
+	cx(S2, 1 << A0);
+	cx(A1, 1 << X1 | 1 << A0);
+	cx(A1, 1 << Y1 | 1 << A0);
 
-	cnot(S1, 1 << X0);
-	cnot(S1, 1 << Y0);
-	cnot(S0, 1 << X0 | 1 << Y0);
-	cnot(S1, 1 << A1);
-	cnot(S0, 1 << X0 | 1 << A1);
-	cnot(S0, 1 << Y0 | 1 << A1);
+	cx(S1, 1 << X0);
+	cx(S1, 1 << Y0);
+	cx(S0, 1 << X0 | 1 << Y0);
+	cx(S1, 1 << A1);
+	cx(S0, 1 << X0 | 1 << A1);
+	cx(S0, 1 << Y0 | 1 << A1);
 }
 
 void
 InverseQuantumAdder(void)
 {
-	cnot(S0, 1 << Y0 | 1 << A1);
-	cnot(S0, 1 << X0 | 1 << A1);
-	cnot(S1, 1 << A1);
-	cnot(S0, 1 << X0 | 1 << Y0);
-	cnot(S1, 1 << Y0);
-	cnot(S1, 1 << X0);
+	cx(S0, 1 << Y0 | 1 << A1);
+	cx(S0, 1 << X0 | 1 << A1);
+	cx(S1, 1 << A1);
+	cx(S0, 1 << X0 | 1 << Y0);
+	cx(S1, 1 << Y0);
+	cx(S1, 1 << X0);
 
-	cnot(A1, 1 << Y1 | 1 << A0);
-	cnot(A1, 1 << X1 | 1 << A0);
-	cnot(S2, 1 << A0);
-	cnot(A1, 1 << X1 | 1 << Y1);
-	cnot(S2, 1 << Y1);
-	cnot(S2, 1 << X1);
+	cx(A1, 1 << Y1 | 1 << A0);
+	cx(A1, 1 << X1 | 1 << A0);
+	cx(S2, 1 << A0);
+	cx(A1, 1 << X1 | 1 << Y1);
+	cx(S2, 1 << Y1);
+	cx(S2, 1 << X1);
 
-	cnot(A0, 1 << X2 | 1 << Y2);
-	cnot(S3, 1 << Y2);
-	cnot(S3, 1 << X2);
+	cx(A0, 1 << X2 | 1 << Y2);
+	cx(S3, 1 << Y2);
+	cx(S3, 1 << X2);
 }

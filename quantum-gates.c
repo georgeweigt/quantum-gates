@@ -43,10 +43,10 @@ pauli_z(int n)
 			psi[i] *= -1.0;
 }
 
-// multiple bits can be set in cbitmask to implement a toffoli gate
+// controlled x (multiple bits can be set in cbitmask)
 
 void
-cnot(int n, int cbitmask)
+cx(int n, int cbitmask)
 {
 	int i, bitmask = 1 << n;
 	double complex z;
@@ -55,6 +55,22 @@ cnot(int n, int cbitmask)
 			z = psi[i ^ bitmask];
 			psi[i ^ bitmask] = psi[i];
 			psi[i] = z;
+		}
+}
+
+// controlled y	(multiple bits can be set in cbitmask)
+
+void
+cy(int n, int cbitmask)
+{
+	int i, bitmask = 1 << n;
+	double complex z0, z1;
+	for (i = 0; i < LENGTH; i++)
+		if ((i & cbitmask) == cbitmask && (i & bitmask)) {
+			z0 = psi[i ^ bitmask];
+			z1 = psi[i];
+			psi[i ^ bitmask] = -I * z1;
+			psi[i] = I * z0;
 		}
 }
 

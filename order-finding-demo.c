@@ -60,8 +60,8 @@ U(int i)
 	cswap(10, 11, ctrlbit);
 	cswap(9, 10, ctrlbit);
 	cswap(8, 9, ctrlbit);
-	cnot(8, ctrlbit);
-	cnot(9, ctrlbit);
-	cnot(10, ctrlbit);
-	cnot(11, ctrlbit);
+	cx(8, ctrlbit);
+	cx(9, ctrlbit);
+	cx(10, ctrlbit);
+	cx(11, ctrlbit);
 }
