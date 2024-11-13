@@ -8,11 +8,11 @@
 void U(int);
 
 int
-main(int argc, char *argv[])
+main()
 {
 	int i;
 
-	psi[0] = 1.0; // ground state |000000000000>
+	psi[0] = 1.0; // ground state
 
 	hadamard(0);
 	hadamard(1);

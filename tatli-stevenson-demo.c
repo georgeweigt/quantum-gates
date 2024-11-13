@@ -34,11 +34,11 @@ void QuantumAdder(void);
 void InverseQuantumAdder(void);
 
 int
-main(int argc, char *argv[])
+main()
 {
 	int i;
 
-	psi[0] = 1.0; // ground state |0000000000000>
+	psi[0] = 1.0; // ground state
 
 	hadamard(X0);
 	hadamard(X1);

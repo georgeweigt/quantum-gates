@@ -3,9 +3,9 @@
 #include "quantum-gates.c"
 
 int
-main(int argc, char *argv[])
+main()
 {
-	psi[0] = 1.0; // ground state |00>
+	psi[0] = 1.0; // ground state
 
 	printf("Ground state\n");
 	peek();
