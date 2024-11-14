@@ -209,11 +209,9 @@ measure(int m)
 
 	// sum over don't care bits
 
-	k = LENGTH / n;
-
 	for (i = 0; i < n; i++)
-		for (j = 1; j < k; j++)
-			p[i] += p[i + n * j];
+		for (j = i + n; j < LENGTH; j += n)
+			p[i] += p[j];
 
 	// histogram
 
