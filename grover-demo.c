@@ -4,9 +4,9 @@
 
 #include "quantum-gates.c"
 
-#define BIT0 0
-#define BIT1 1
-#define BIT2 2
+#define Q0 0
+#define Q1 1
+#define Q2 2
 
 int
 main()
@@ -15,34 +15,34 @@ main()
 
 	// init
 
-	hadamard(BIT0);
-	hadamard(BIT1);
-	hadamard(BIT2);
+	hadamard(Q0);
+	hadamard(Q1);
+	hadamard(Q2);
 
 	// oracle
 
-	czgate(BIT2, 1 << BIT0);
-	czgate(BIT2, 1 << BIT1);
+	czgate(Q2, 1 << Q0);
+	czgate(Q2, 1 << Q1);
 
 	// amplification (diffuser)
 
-	hadamard(BIT0);
-	hadamard(BIT1);
-	hadamard(BIT2);
+	hadamard(Q0);
+	hadamard(Q1);
+	hadamard(Q2);
 
-	xgate(BIT0);
-	xgate(BIT1);
-	xgate(BIT2);
+	xgate(Q0);
+	xgate(Q1);
+	xgate(Q2);
 
-	czgate(BIT2, 1 << BIT1 | 1 << BIT0);
+	czgate(Q2, 1 << Q1 | 1 << Q0);
 
-	xgate(BIT0);
-	xgate(BIT1);
-	xgate(BIT2);
+	xgate(Q0);
+	xgate(Q1);
+	xgate(Q2);
 
-	hadamard(BIT0);
-	hadamard(BIT1);
-	hadamard(BIT2);
+	hadamard(Q0);
+	hadamard(Q1);
+	hadamard(Q2);
 
 	measure(3); // measure 3 qubits
 }
