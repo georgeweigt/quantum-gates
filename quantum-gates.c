@@ -193,7 +193,7 @@ ift(int n)
 	}
 }
 
-// measure m qubits
+// measure qubits 0 to m - 1
 
 void
 measure(int m)
