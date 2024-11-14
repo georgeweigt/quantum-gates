@@ -198,7 +198,7 @@ ift(int n)
 void
 measure(int m)
 {
-	int i, j, k, n;
+	int b, i, j, n;
 
 	n = 1 << m; // n = 2^m
 
@@ -216,16 +216,13 @@ measure(int m)
 	// histogram
 
 	for (i = 0; i < n; i++) {
-		for (j = m - 1; j >= 0; j--)
-			if (i & (1 << j))
-				printf("1");
-			else
-				printf("0");
+		b = 1 << m;
+		while (b >>= 1)
+			putchar((i & b) ? '1' : '0');
 		printf(" %f ", p[i]);
-		k = round(100.0 * p[i]);
-		for (j = 0; j < k; j++)
-			printf("*");
-		printf("\n");
+		for (j = round(100.0 * p[i]); j > 0; j--)
+			putchar('*');
+		putchar('\n');
 	}
 }
 
@@ -234,13 +231,11 @@ measure(int m)
 void
 peek(void)
 {
-	int i, j;
+	int b, i;
 	for (i = 0; i < LENGTH; i++) {
-		for (j = NUMQBITS - 1; j >= 0; j--)
-			if (i & (1 << j))
-				printf("1");
-			else
-				printf("0");
+		b = 1 << NUMQBITS;
+		while (b >>= 1)
+			putchar((i & b) ? '1' : '0');
 		printf(" %+f%+fI\n", creal(psi[i]), cimag(psi[i]));
 	}
 }
