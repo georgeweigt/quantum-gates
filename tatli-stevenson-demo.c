@@ -4,15 +4,15 @@
 
 #include "quantum-gates.c"
 
-// qubit names (reverse bit ordering for X and Y)
+// qubit names (reverse bit order for X and Y)
 
-#define X0 5
-#define X1 4
-#define X2 3
+#define X0 2
+#define X1 1
+#define X2 0
 
-#define Y0 2
-#define Y1 1
-#define Y2 0
+#define Y0 5
+#define Y1 4
+#define Y2 3
 
 #define A0 6
 #define A1 7
