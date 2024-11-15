@@ -119,6 +119,7 @@ QuantumAdder(void)
 	cxgate(S2, 1 << X1);
 	cxgate(S2, 1 << Y1);
 	cxgate(A1, 1 << X1 | 1 << Y1);
+
 	cxgate(S2, 1 << A0);
 	cxgate(A1, 1 << X1 | 1 << A0);
 	cxgate(A1, 1 << Y1 | 1 << A0);
@@ -126,6 +127,7 @@ QuantumAdder(void)
 	cxgate(S1, 1 << X0);
 	cxgate(S1, 1 << Y0);
 	cxgate(S0, 1 << X0 | 1 << Y0);
+
 	cxgate(S1, 1 << A1);
 	cxgate(S0, 1 << X0 | 1 << A1);
 	cxgate(S0, 1 << Y0 | 1 << A1);
@@ -137,6 +139,7 @@ InverseQuantumAdder(void)
 	cxgate(S0, 1 << Y0 | 1 << A1);
 	cxgate(S0, 1 << X0 | 1 << A1);
 	cxgate(S1, 1 << A1);
+
 	cxgate(S0, 1 << X0 | 1 << Y0);
 	cxgate(S1, 1 << Y0);
 	cxgate(S1, 1 << X0);
@@ -144,6 +147,7 @@ InverseQuantumAdder(void)
 	cxgate(A1, 1 << Y1 | 1 << A0);
 	cxgate(A1, 1 << X1 | 1 << A0);
 	cxgate(S2, 1 << A0);
+
 	cxgate(A1, 1 << X1 | 1 << Y1);
 	cxgate(S2, 1 << Y1);
 	cxgate(S2, 1 << X1);
