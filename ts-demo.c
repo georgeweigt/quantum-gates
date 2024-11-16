@@ -24,10 +24,6 @@
 
 #define Q12 12
 
-#define QUERY_MASK (1 << S0 | 1 << S1 | 1 << S2 | 1 << S3)
-
-#define DIFFUSER_MASK (1 << X0 | 1 << X1 | 1 << X2 | 1 << Y0 | 1 << Y1 | 1 << Y2)
-
 void Query(void);
 void Diffuser(void);
 void QuantumAdder(void);
@@ -66,7 +62,7 @@ Query(void)
 {
 	xgate(S0);
 	xgate(S2);
-	cxgate(Q12, QUERY_MASK);
+	cxgate(Q12, 1<<S0 | 1<<S1 | 1<<S2 | 1<<S3);
 	xgate(S0);
 	xgate(S2);
 }
@@ -90,7 +86,7 @@ Diffuser(void)
 	xgate(Y1);
 	xgate(Y2);
 
-	cxgate(Q12, DIFFUSER_MASK);
+	cxgate(Q12, 1<<X0 | 1<<X1 | 1<<X2 | 1<<Y0 | 1<<Y1 | 1<<Y2);
 
 	xgate(X0);
 	xgate(X1);
