@@ -2,7 +2,7 @@
 
 #define NUMQBITS 13
 
-#include "quantum-gates.c"
+#include "quantum-gates.h"
 
 // qubit names (reverse bit order for X and Y)
 

@@ -1,4 +1,4 @@
-The following quantum gates are implemented in quantum-gates.c
+The following quantum gates are implemented in quantum-gates.h
 ```
 xgate
 ygate

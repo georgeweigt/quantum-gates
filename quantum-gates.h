@@ -1,3 +1,5 @@
+// define NUMQBITS before including this file
+
 #include <stdio.h>
 #include <math.h>
 #include <complex.h>

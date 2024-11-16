@@ -2,7 +2,7 @@
 
 #define NUMQBITS 3
 
-#include "quantum-gates.c"
+#include "quantum-gates.h"
 
 #define Q0 0
 #define Q1 1
