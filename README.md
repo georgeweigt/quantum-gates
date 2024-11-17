@@ -60,9 +60,3 @@ Result
 110 0.000000 
 111 0.500000 **************************************************
 ```
-
-#
-
-[Quantum logic gate - Wikipedia](https://en.wikipedia.org/wiki/Quantum_logic_gate)
-
-[Qubit - Wikipedia](https://en.wikipedia.org/wiki/Qubit)
