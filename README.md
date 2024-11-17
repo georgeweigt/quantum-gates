@@ -1,5 +1,6 @@
 The following quantum gates are implemented in quantum-gates.h
 ```
+init		Ground state
 xgate
 ygate
 zgate
