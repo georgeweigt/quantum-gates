@@ -16,7 +16,7 @@ ift		Inverse fourier transform
 measure		Transition to eigenstate
 ```
 
-For example, consider the following circuit.
+Consider the following circuit.
 
 ![simple-circuit](https://github.com/user-attachments/assets/5ba71f35-ba8d-4fb9-9a56-d5a9d0937bed)
 
@@ -34,7 +34,6 @@ This is the circuit is C.
 int
 main()
 {
-	init();
 	hadamard(Q0);
 	cxgate(Q1, 1<<Q0);
 	cxgate(Q2, 1<<Q1);
