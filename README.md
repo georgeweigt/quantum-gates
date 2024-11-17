@@ -1,13 +1,13 @@
 The following quantum gates are implemented in quantum-gates.h
 ```
 init		Ground state
-xgate
-ygate
-zgate
-cxgate		Controlled X and Toffoli
+xgate		Pauli X
+ygate		Pauli Y
+zgate		Pauli Z
+cxgate		Controlled X and general Toffoli
 cygate		Controlled Y
 czgate		Controlled Z
-hadamard
+hadamard	Hadamard
 phase		S, T, and general phase gate
 cphase		Controlled phase
 swap		Swap qubits
