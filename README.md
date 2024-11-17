@@ -13,6 +13,7 @@ swap		Swap qubits
 cswap		Controlled swap
 ft		Fourier transform
 ift		Inverse fourier transform
+measure		Transition to eigenstate
 ```
 
 To build and run a demo

@@ -1,6 +1,7 @@
 // define NUMQBITS before including this file
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <complex.h>
 
@@ -201,6 +202,7 @@ void
 measure(int m)
 {
 	int b, i, j, n;
+	double r, s;
 
 	n = 1 << m; // n = 2^m
 
@@ -225,6 +227,20 @@ measure(int m)
 		for (j = round(100.0 * p[i]); j > 0; j--)
 			putchar('*');
 		putchar('\n');
+	}
+
+	// transition to eigenstate
+
+	for (i = 0; i < LENGTH; i++)
+		psi[i] = 0.0;
+	r = rand() / ((double) RAND_MAX + 1.0);
+	s = 0.0;
+	for (i = 0; i < n; i++) {
+		s += p[i];
+		if (r < s) {
+			p[i] = 1.0;
+			break;
+		}
 	}
 }
 
