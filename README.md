@@ -49,7 +49,7 @@ gcc simple-demo.c
 ./a.out
 ```
 
-Result
+The result is a histogram of eigenstate probabilities.
 ```
 000 0.500000 **************************************************
 001 0.000000 
