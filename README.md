@@ -15,13 +15,52 @@ ft		Fourier transform
 ift		Inverse fourier transform
 measure		Transition to eigenstate
 ```
+
+For example, consider the following circuit.
+
 ![simple-circuit](https://github.com/user-attachments/assets/5ba71f35-ba8d-4fb9-9a56-d5a9d0937bed)
 
-To build and run a demo
+This is the circuit is C.
+
 ```
-gcc grover-demo.c
-./a.out
+#define NUMQBITS 3
+
+#include "quantum-gates.h"
+
+#define Q0 0
+#define Q1 1
+#define Q2 2
+
+int
+main()
+{
+	init();
+	hadamard(Q0);
+	cxgate(Q1, 1<<Q0);
+	cxgate(Q2, 1<<Q1);
+	measure(NUMQBITS);
+}
 ```
+
+To build and run
+
+```
+gcc simple-circuit.c
+.\a.out
+```
+
+Result
+```
+000 0.500000 **************************************************
+001 0.000000 
+010 0.000000 
+011 0.000000 
+100 0.000000 
+101 0.000000 
+110 0.000000 
+111 0.500000 **************************************************
+```
+
 #
 
 [Quantum logic gate - Wikipedia](https://en.wikipedia.org/wiki/Quantum_logic_gate)

@@ -7,7 +7,7 @@
 
 #define LENGTH (1 << NUMQBITS)
 
-double complex psi[LENGTH]; // state vector
+double complex psi[LENGTH] = {1.0}; // state vector
 double p[LENGTH]; // probability vector
 
 void

@@ -11,8 +11,6 @@
 int
 main()
 {
-	psi[0] = 1.0; // ground state
-
 	// init
 
 	hadamard(Q0);

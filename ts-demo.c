@@ -36,8 +36,6 @@ main()
 {
 	int i;
 
-	psi[0] = 1.0; // ground state
-
 	hadamard(X0);
 	hadamard(X1);
 	hadamard(X2);
