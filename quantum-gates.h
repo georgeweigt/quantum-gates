@@ -233,15 +233,14 @@ measure(int m)
 
 	for (i = 0; i < LENGTH; i++)
 		psi[i] = 0.0;
-	r = rand() / ((double) RAND_MAX + 1.0);
+	r = (double) rand() / RAND_MAX;
 	s = 0.0;
-	for (i = 0; i < n; i++) {
+	for (i = 0; i < n - 1; i++) {
 		s += p[i];
-		if (r < s) {
-			psi[i] = 1.0;
+		if (r < s)
 			break;
-		}
 	}
+	psi[i] = 1.0;
 }
 
 // inspect state vector
