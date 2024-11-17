@@ -15,6 +15,7 @@ ft		Fourier transform
 ift		Inverse fourier transform
 measure		Transition to eigenstate
 ```
+![simple-circuit](https://github.com/user-attachments/assets/5ba71f35-ba8d-4fb9-9a56-d5a9d0937bed)
 
 To build and run a demo
 ```
