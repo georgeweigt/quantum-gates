@@ -7,7 +7,7 @@ zgate		Pauli Z
 cxgate		Controlled X and Toffoli
 cygate		Controlled Y
 czgate		Controlled Z
-hadamard	Hadamard
+hadamard	Hadamard gate
 phase		S, T, and general phase gate
 cphase		Controlled phase
 swap		Swap qubits
