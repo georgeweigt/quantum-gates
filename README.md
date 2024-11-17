@@ -4,7 +4,7 @@ init		Ground state
 xgate		Pauli X
 ygate		Pauli Y
 zgate		Pauli Z
-cxgate		Controlled X and general Toffoli
+cxgate		Controlled X and Toffoli
 cygate		Controlled Y
 czgate		Controlled Z
 hadamard	Hadamard
