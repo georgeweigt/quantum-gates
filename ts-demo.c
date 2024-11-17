@@ -36,6 +36,8 @@ main()
 {
 	int i;
 
+	init();
+
 	hadamard(X0);
 	hadamard(X1);
 	hadamard(X2);

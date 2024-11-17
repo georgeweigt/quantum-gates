@@ -11,7 +11,7 @@
 int
 main()
 {
-	// init
+	init();
 
 	hadamard(Q0);
 	hadamard(Q1);

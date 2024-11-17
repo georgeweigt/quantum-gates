@@ -34,6 +34,7 @@ This is the circuit is C.
 int
 main()
 {
+	init();
 	hadamard(Q0);
 	cxgate(Q1, 1<<Q0);
 	cxgate(Q2, 1<<Q1);
