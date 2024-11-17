@@ -44,8 +44,8 @@ main()
 To build and run
 
 ```
-gcc simple-circuit.c
-.\a.out
+gcc simple-demo.c
+./a.out
 ```
 
 Result
