@@ -238,7 +238,7 @@ measure(int m)
 	for (i = 0; i < n; i++) {
 		s += p[i];
 		if (r < s) {
-			p[i] = 1.0;
+			psi[i] = 1.0;
 			break;
 		}
 	}
