@@ -37,8 +37,8 @@ main()
 {
 	init();
 	hadamard(Q0);
-	cxgate(Q1, 1<<Q0);
-	cxgate(Q2, 1<<Q1);
+	cxgate(Q1, 1 << Q0);
+	cxgate(Q2, 1 << Q1);
 	measure(NUMQBITS);
 }
 ```
