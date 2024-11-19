@@ -1,9 +1,13 @@
-// define NUMQBITS before including this file
+/* Every quantum gate is a rotation matrix that preserves the unit magnitude of
+a state vector. The following code implements vector component arithmetic that
+replicates multiplication by rotation matrices. */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <complex.h>
+
+// define NUMQBITS before including this file
 
 #define LENGTH (1 << NUMQBITS)
 
