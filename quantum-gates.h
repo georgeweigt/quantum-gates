@@ -14,11 +14,9 @@ void
 init(void)
 {
 	int i;
-	static int count;
 	psi[0] = 1.0;
-	if (++count > 1)
-		for (i = 1; i < LENGTH; i++)
-			psi[i] = 0.0;
+	for (i = 1; i < LENGTH; i++)
+		psi[i] = 0.0;
 }
 
 void
