@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include <complex.h>
-#include <string.h>
 
 #define LENGTH (1 << NUMQBITS)
 
@@ -14,8 +13,10 @@ double p[LENGTH]; // probability vector
 void
 init(void)
 {
-	memset(psi, 0, sizeof psi);
+	int i;
 	psi[0] = 1.0;
+	for (i = 1; i < LENGTH; i++)
+		psi[i] = 0.0;
 }
 
 void
@@ -239,7 +240,8 @@ measure(int m)
 
 	// transition to eigenstate
 
-	memset(psi, 0, sizeof psi);
+	for (i = 0; i < LENGTH; i++)
+		psi[i] = 0.0;
 	r = (double) rand() / RAND_MAX;
 	s = 0.0;
 	for (i = 0; i < n - 1; i++) {
