@@ -1,4 +1,4 @@
-/* Quantum gates are rotation matrices that preserves the unit magnitude of a
+/* Quantum gates are rotation matrices that preserve the unit magnitude of a
 state vector. The following code implements component arithmetic that is
 equivalent to multiplication by rotation matrices. */
 
