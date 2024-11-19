@@ -13,10 +13,7 @@ double p[LENGTH]; // probability vector
 void
 init(void)
 {
-	int i;
 	psi[0] = 1.0;
-	for (i = 1; i < LENGTH; i++)
-		psi[i] = 0.0;
 }
 
 void
