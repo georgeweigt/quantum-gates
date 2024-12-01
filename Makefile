@@ -9,4 +9,4 @@ default:
 	for FILE in $$(basename -a -s .c *.c) ; do make $$FILE ; done
 
 clean:
-	rm -f $$(basename -a -s .c *.c)
+	rm -f a.out $$(basename -a -s .c *.c)
