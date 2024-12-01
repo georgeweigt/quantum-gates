@@ -2,7 +2,7 @@
 
 # https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 
-%: %.c
+%: %.c quantum-gates.h
 	$(CC) -Wall -O0 -o $@ $<
 
 default:
