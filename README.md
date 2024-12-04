@@ -14,7 +14,7 @@ swap		Swap qubits
 cswap		Controlled swap
 ft		Fourier transform
 ift		Inverse fourier transform
-measure		Transition to eigenstate
+measure		Print histogram of current state, then go to a definite state
 ```
 
 #
@@ -39,8 +39,8 @@ main()
 {
 	init();
 	hadamard(Q0);
-	cxgate(Q1, 1 << Q0);
-	cxgate(Q2, 1 << Q1);
+	cxgate(Q1, 1 << Q0); // Q1 is target, Q0 is control
+	cxgate(Q2, 1 << Q1); // Q2 is target, Q1 is control
 	measure(NUMQBITS);
 }
 ```
