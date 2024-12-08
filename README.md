@@ -1,4 +1,5 @@
 The following quantum gates are implemented in quantum-gates.h
+
 ```
 init		Ground state
 xgate		Pauli X
@@ -53,6 +54,7 @@ gcc simple-demo.c
 ```
 
 The result is a histogram of eigenstate probabilities.
+
 ```
 000 0.500000 **************************************************
 001 0.000000 
@@ -64,5 +66,4 @@ The result is a histogram of eigenstate probabilities.
 111 0.500000 **************************************************
 ```
 
-This result shows there is a 50% chance of getting 000 from the circuit
-and a 50% chance getting 111.
+The result shows a 50% chance of getting 000 from the circuit and a 50% chance getting 111.
