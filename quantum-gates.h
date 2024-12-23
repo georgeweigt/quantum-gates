@@ -59,7 +59,7 @@ zgate(int n)
 			psi[i] *= -1.0;
 }
 
-// controlled x (multiple bits can be set in cbitmask)
+// controlled x (multiple control bits can be set in cbitmask)
 
 void
 cxgate(int n, int cbitmask)
@@ -74,7 +74,7 @@ cxgate(int n, int cbitmask)
 		}
 }
 
-// controlled y	(multiple bits can be set in cbitmask)
+// controlled y	(multiple control bits can be set in cbitmask)
 
 void
 cygate(int n, int cbitmask)
@@ -90,7 +90,7 @@ cygate(int n, int cbitmask)
 		}
 }
 
-// controlled z (multiple bits can be set in cbitmask)
+// controlled z (multiple control bits can be set in cbitmask)
 
 void
 czgate(int n, int cbitmask)
@@ -127,7 +127,7 @@ phase(double complex z, int n)
 			psi[i] *= z;
 }
 
-// controlled phase (multiple bits can be set in cbitmask)
+// controlled phase (multiple control bits can be set in cbitmask)
 
 void
 cphase(double complex z, int n, int cbitmask)
@@ -156,7 +156,7 @@ swap(int m, int n)
 		}
 }
 
-// controlled swap (multiple bits can be set in cbitmask)
+// controlled swap (multiple control bits can be set in cbitmask)
 
 void
 cswap(int m, int n, int cbitmask)
