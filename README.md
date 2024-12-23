@@ -15,7 +15,7 @@ swap		Swap qubits
 cswap		Controlled swap
 ft		Fourier transform
 ift		Inverse fourier transform
-measure		Print histogram of current state, then go to a definite state
+measure		Print a histogram of the current state, then go to a basis state
 ```
 
 #
@@ -53,7 +53,7 @@ gcc simple-demo.c
 ./a.out
 ```
 
-The result is a histogram of eigenstate probabilities.
+The result is a histogram of basis state probabilities.
 
 ```
 000 0.500000 **************************************************
