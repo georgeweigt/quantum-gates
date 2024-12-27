@@ -11,6 +11,8 @@ main()
 {
 	init();
 
+	// Q0 is the qubit to be teleported
+
 	// xgate(Q0);
 
 	hadamard(Q1);
@@ -21,18 +23,28 @@ main()
 
 	measure(3);
 
-	if (psi[2] == 1.0 || psi[6] == 1.0) {
-		printf("X\n");
-		xgate(Q2);
-	} else if (psi[1] == 1.0 || psi[5] == 1.0) {
+	switch (newstate & (1 << Q1 | 1 << Q0)) {
+
+	case 1 << Q0:
 		printf("Z\n");
 		zgate(Q2);
-	} else if (psi[3] == 1.0 || psi[7] == 1.0) {
+		break;
+
+	case 1 << Q1:
+		printf("X\n");
+		xgate(Q2);
+		break;
+
+	case 1 << Q1 | 1 << Q0:
 		printf("XZ\n");
 		xgate(Q2);
 		zgate(Q2);
-	} else
+		break;
+
+	default:
 		printf("\n");
+		break;
+	}
 
 	peek();
 	printf("\n");

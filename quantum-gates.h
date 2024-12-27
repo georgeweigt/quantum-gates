@@ -13,6 +13,7 @@ equivalent to multiplication by rotation matrices. */
 
 double complex psi[LENGTH]; // state vector
 double p[LENGTH]; // probability vector
+int newstate;
 
 void
 init(void)
@@ -237,6 +238,7 @@ measure(int m)
 			break;
 	}
 	psi[i] = 1.0;
+	newstate = i;
 
 	// sum over don't care bits
 
