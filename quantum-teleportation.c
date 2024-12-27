@@ -33,7 +33,7 @@ main()
 	cxgate(Q1, 1 << Q0);
 	hadamard(Q0);
 
-	measure(3);
+	measure(NUMQBITS);
 
 	switch (newstate & (1 << Q1 | 1 << Q0)) {
 
@@ -58,7 +58,7 @@ main()
 		break;
 	}
 
-	measure(3);
+	measure(NUMQBITS);
 
 	if (newstate & (1 << Q2))
 		printf("Q2: 1\n");
