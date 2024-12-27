@@ -46,9 +46,10 @@ main()
 		break;
 	}
 
-	peek();
-	printf("\n");
+	measure(3);
 
-	swap(Q0, Q2); // swap to measure
-	measure(1);
+	if (newstate & (1 << Q2))
+		printf("Q2: 1\n");
+	else
+		printf("Q2: 0\n");
 }
