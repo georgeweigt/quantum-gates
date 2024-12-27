@@ -9,7 +9,6 @@
 int
 main()
 {
-	sranddev();
 	init();
 
 	// xgate(Q0);
@@ -35,6 +34,7 @@ main()
 	} else
 		printf("\n");
 
-	swap(Q0, Q2);
+	peek();
+	swap(Q0, Q2); // swap to measure
 	measure(1);
 }

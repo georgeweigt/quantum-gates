@@ -18,6 +18,7 @@ void
 init(void)
 {
 	int i;
+	sranddev();
 	psi[0] = 1.0;
 	for (i = 1; i < LENGTH; i++)
 		psi[i] = 0.0;
