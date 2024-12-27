@@ -15,7 +15,7 @@ swap		Swap qubits
 cswap		Controlled swap
 ft		Fourier transform
 ift		Inverse fourier transform
-measure		Print a histogram of the current state, then go to a basis state
+measure		Print a histogram of the current state and go to a basis state
 ```
 
 #
