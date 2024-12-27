@@ -1,3 +1,13 @@
+/* Q0 and Q1 are local, Q2 is remote
+
+Q0 --------------.----H----M
+                 |         |
+Q1 ----H----.----X----M    |
+            |         |    |
+Q2 ---------X---------X----Z----
+
+*/
+
 #define NUMQBITS 3
 
 #include "quantum-gates.h"
@@ -11,9 +21,9 @@ main()
 {
 	init();
 
-	// Q0 is the qubit to be teleported
+	// Q0 is the qubit to be teleported (default is Q0 = 0)
 
-	// xgate(Q0);
+	xgate(Q0); // make Q0 = 1
 
 	hadamard(Q1);
 	cxgate(Q2, 1 << Q1);
