@@ -19,7 +19,7 @@ main()
 	cxgate(Q1, 1 << Q0);
 	hadamard(Q0);
 
-	measure(2);
+	measure(3);
 
 	if (psi[2] == 1.0 || psi[6] == 1.0) {
 		printf("X\n");
@@ -35,6 +35,8 @@ main()
 		printf("\n");
 
 	peek();
+	printf("\n");
+
 	swap(Q0, Q2); // swap to measure
 	measure(1);
 }
