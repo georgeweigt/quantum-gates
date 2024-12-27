@@ -1,4 +1,4 @@
-/* Q0 and Q1 are local, Q2 is remote
+/* Q0 and Q1 are local, Q2 is remote after entanglement
 
 Q0 --------------.----H----M
                  |         |
@@ -6,6 +6,8 @@ Q1 ----H----.----X----M    |
             |         |    |
 Q2 ---------X---------X----Z----
 
+            ^
+            Q1 and Q2 maximally entangled (bell state)
 */
 
 #define NUMQBITS 3
