@@ -4,10 +4,10 @@ Q0 --------------.----H----M
                  |         |
 Q1 ----H----.----X----M    |
             |         |    |
-Q2 ---------X---------X----Z----
+Q2 ---------X---------X----Z----M
 
             ^
-            Q1 and Q2 maximally entangled (bell state)
+            Q1 and Q2 maximally entangled (Bell state)
 */
 
 #define NUMQBITS 3
