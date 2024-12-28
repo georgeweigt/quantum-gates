@@ -30,8 +30,6 @@ Q1 ---------X----.----M
 Q2 --------------X----M
 ```
 
-![simple-circuit](https://github.com/user-attachments/assets/5ba71f35-ba8d-4fb9-9a56-d5a9d0937bed)
-
 This is the circuit in C.
 
 ```
