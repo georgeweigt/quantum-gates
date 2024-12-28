@@ -22,6 +22,14 @@ measure		Print a histogram of the current state and go to a basis state
 
 Consider the following circuit.
 
+```
+Q0 ----H----.---------M
+            |
+Q1 ---------X----.----M
+                 |
+Q2 --------------X----M
+```
+
 ![simple-circuit](https://github.com/user-attachments/assets/5ba71f35-ba8d-4fb9-9a56-d5a9d0937bed)
 
 This is the circuit in C.
