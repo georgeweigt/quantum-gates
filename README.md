@@ -20,7 +20,7 @@ measure		Print a histogram of the current state and go to a basis state
 
 #
 
-Consider the following circuit.
+Consider the following quantum circuit.
 
 ```
 Q0 ----H----.---------M
