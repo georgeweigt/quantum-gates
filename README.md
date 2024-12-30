@@ -18,9 +18,13 @@ ift		Inverse fourier transform
 measure		Print a histogram of the current state and go to a basis state
 ```
 
-A Toffoli gate is accomplished as
+A Toffoli gate is accomplished by bitwise OR of control qubits.
 
 ```
+#define Q0 0
+#define Q1 1
+#define Q2 2
+
 cxgate(Q2, 1 << Q1 | 1 << Q0); // Q2 is target, Q1 and Q0 are control
 ```
 
