@@ -1,10 +1,10 @@
 /*
 
-Q0 ----H----.---------M
+Q0 ----H----.----M
             |
-Q1 ---------X----.----M
-                 |
-Q2 --------------X----M
+Q1 ----H----.----M
+            |
+Q2 ---------X----M
 
 */
 
@@ -21,7 +21,7 @@ main()
 {
 	init();
 	hadamard(Q0);
-	cxgate(Q1, 1 << Q0);
-	cxgate(Q2, 1 << Q1);
+	hadamard(Q1);
+	cxgate(Q2, 1 << Q1 | 1 << Q0); // Q2 is target, Q1 and Q0 are control
 	measure(NUMQBITS);
 }
