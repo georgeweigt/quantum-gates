@@ -21,7 +21,7 @@ measure		Print a histogram of the current state and go to a basis state
 A Toffoli gate is accomplished as
 
 ```
-	cxgate(Q2, 1 << Q1 | 1 << Q0); // Q2 is target, Q1 and Q0 are control
+cxgate(Q2, 1 << Q1 | 1 << Q0); // Q2 is target, Q1 and Q0 are control
 ```
 
 #
