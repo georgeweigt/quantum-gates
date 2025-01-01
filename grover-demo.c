@@ -1,4 +1,12 @@
-// https://arxiv.org/abs/1703.10535
+/* arxiv.org/abs/1703.10535
+
+Q0 ----H----.---------H----X----.----X----H----M
+            |                   |
+Q1 ----H----|----.----H----X----.----X----H----M
+            |    |              |
+Q2 ----H----Z----Z----H----X----Z----X----H----M
+
+*/
 
 #define NUMQBITS 3
 
@@ -42,5 +50,5 @@ main()
 	hadamard(Q1);
 	hadamard(Q2);
 
-	measure(3); // measure 3 qubits
+	measure(NUMQBITS);
 }
