@@ -65,8 +65,8 @@ main()
 To build and run
 
 ```
-gcc simple-demo.c
-./a.out
+make
+./simple-demo
 ```
 
 The result is a histogram of basis state probabilities.

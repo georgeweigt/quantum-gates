@@ -25,6 +25,8 @@ init(void)
 		psi[i] = 0.0;
 }
 
+// n is the qubit number from 0 to NUMQBITS - 1
+
 void
 xgate(int n)
 {
@@ -37,6 +39,8 @@ xgate(int n)
 			psi[i] = z;
 		}
 }
+
+// n is the qubit number from 0 to NUMQBITS - 1
 
 void
 ygate(int n)
@@ -51,6 +55,8 @@ ygate(int n)
 			psi[i] = I * z0;
 		}
 }
+
+// n is the qubit number from 0 to NUMQBITS - 1
 
 void
 zgate(int n)
