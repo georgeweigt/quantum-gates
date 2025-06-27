@@ -2,8 +2,8 @@ Quantum gates are rotation matrices that preserve the unit magnitude of a state
 vector.
 The file `quantum-gates.h` implements rotation matrices using component
 arithmetic.
-See the demo programs for examples of how to include `quantum-gates.h` and
-implement quantum algorithms in C.
+See the demo programs `*-demo.c` for examples of how to include
+`quantum-gates.h` and implement quantum algorithms in C.
 
 The following quantum gates are implemented in `quantum-gates.h`
 
