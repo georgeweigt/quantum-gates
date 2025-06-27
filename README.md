@@ -1,4 +1,7 @@
-The following quantum gates are implemented in quantum-gates.h
+Quantum gates are rotation matrices that preserve the unit magnitude of a state vector.
+`quantum-gates.h` implements component arithmetic that is equivalent to multiplication by rotation matrices.
+
+The following quantum gates are implemented in `quantum-gates.h`
 
 ```
 init		Ground state
