@@ -22,7 +22,7 @@ swap		Swap qubits
 cswap		Controlled swap
 ft		Fourier transform
 ift		Inverse fourier transform
-measure		Print a histogram of the current state and go to a basis state
+measure		Print a histogram of the current state and rotate to a basis state
 ```
 
 Controlled gates can have any number of control bits.
