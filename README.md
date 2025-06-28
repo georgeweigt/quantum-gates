@@ -25,7 +25,11 @@ ift		Inverse fourier transform
 measure		Print a histogram of the current state and go to a basis state
 ```
 
-A Toffoli gate is accomplished by bitwise OR of control qubits.
+Controlled gates can have any number of control bits.
+Control bits are selected in a bitwise field.
+Controlled gates only modify the state vector for states
+where all control bits are 1.
+For example, here is a Toffoli gate.
 
 ```
 #define Q0 0
