@@ -29,7 +29,7 @@ Controlled gates can have any number of control bits.
 Control bits are selected in a bitwise field.
 Controlled gates only modify the state vector for states
 where all control bits are 1.
-For example, here is a Toffoli gate.
+To demonstrate the selection field, here is a Toffoli gate.
 
 ```
 #define Q0 0
