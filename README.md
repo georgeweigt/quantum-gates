@@ -26,9 +26,9 @@ measure		Print a histogram of the current state and rotate to a basis state
 ```
 
 Controlled gates can have any number of control bits.
-Control bits are chosen with a bitwise selection field.
+Control bits are selected setting bits of an `int`.
 Controlled gates only modify the state vector for states
-where all control bits are 1.
+where all selected control bits are 1.
 To demonstrate the selection field, here is a Toffoli gate.
 
 ```
