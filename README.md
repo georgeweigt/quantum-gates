@@ -27,14 +27,18 @@ measure		Print a histogram of the current state and rotate to a basis state
 
 Controlled gates can have any number of control bits.
 Control bits are selected by setting bits in an `int`
-as the following Toffoli gate demonstrates.
+as shown in the following example.
 
 ```
 #define Q0 0
 #define Q1 1
 #define Q2 2
 
-cxgate(Q2, 1 << Q1 | 1 << Q0); // Q2 is target, Q1 and Q0 are control
+// Toffoli gate
+
+// Q2 is target, Q1 and Q0 are control
+
+cxgate(Q2, 1 << Q1 | 1 << Q0);
 ```
 
 #
