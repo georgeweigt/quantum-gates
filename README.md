@@ -1,7 +1,5 @@
 Quantum gates are rotation matrices that preserve the unit magnitude of a state
 vector.
-The file `quantum-gates.c` implements rotation matrices using component
-arithmetic.
 
 The following quantum gates are implemented in `quantum-gates.c`
 
@@ -78,7 +76,6 @@ To build and run
 ```
 gcc simple-demo.c quantum-gates.c -lm
 ./a.out
-
 ```
 
 The result is a histogram of basis state probabilities.
