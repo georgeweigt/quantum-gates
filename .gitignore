@@ -1,11 +1,6 @@
 .DS_Store
 *.swp
 *.tmp
-*.aux
-*.log
-*.synctex.gz
-*.toc
-*.pdf
 a.out
 adder-demo
 grover-demo
