@@ -1,14 +1,14 @@
 .PHONY: default clean
 
-OBJS := $(shell basename -a -s .c *.c)
+OBJS = adder-demo grover-demo simple-demo toffoli-demo ts-demo
 
 # https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 
-%: %.c quantum-gates.h
-	$(CC) -Wall -O0 -o $@ $< -lm
+%: %.c
+	$(CC) -Wall -O0 -o $@ $< quantum-gates.c -lm
 
 default:
 	for FILE in $(OBJS) ; do make $$FILE ; done
 
 clean:
-	rm -f a.out $(OBJS)
+	rm -f $(OBJS)

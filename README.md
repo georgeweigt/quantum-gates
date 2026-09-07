@@ -1,11 +1,9 @@
 Quantum gates are rotation matrices that preserve the unit magnitude of a state
 vector.
-The file `quantum-gates.h` implements rotation matrices using component
+The file `quantum-gates.c` implements rotation matrices using component
 arithmetic.
-See the demo programs `*-demo.c` for examples of how to include
-`quantum-gates.h` and implement quantum algorithms in C.
 
-The following quantum gates are implemented in `quantum-gates.h`
+The following quantum gates are implemented in `quantum-gates.c`
 
 ```
 init      Ground state
@@ -56,9 +54,9 @@ Q2 --------------X----M
 This is the circuit in C.
 
 ```
-#define NUMQBITS 3
-
 #include "quantum-gates.h"
+
+#define NUMQBITS 3
 
 #define Q0 0
 #define Q1 1
@@ -67,7 +65,7 @@ This is the circuit in C.
 int
 main()
 {
-     init();
+     init(NUMQBITS);
      hadamard(Q0);
      cxgate(Q1, 1 << Q0); // Q1 is target, Q0 is control
      cxgate(Q2, 1 << Q1); // Q2 is target, Q1 is control
@@ -78,8 +76,9 @@ main()
 To build and run
 
 ```
-make
-./simple-demo
+gcc simple-demo.c quantum-gates.c -lm
+./a.out
+
 ```
 
 The result is a histogram of basis state probabilities.

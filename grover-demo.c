@@ -1,3 +1,5 @@
+#include "quantum-gates.h"
+
 /* arxiv.org/abs/1703.10535
 
 Q0 ----H----.---------H----X----.----X----H----M
@@ -10,8 +12,6 @@ Q2 ----H----Z----Z----H----X----Z----X----H----M
 
 #define NUMQBITS 3
 
-#include "quantum-gates.h"
-
 #define Q0 0
 #define Q1 1
 #define Q2 2
@@ -19,7 +19,7 @@ Q2 ----H----Z----Z----H----X----Z----X----H----M
 int
 main()
 {
-	init();
+	init(NUMQBITS);
 
 	hadamard(Q0);
 	hadamard(Q1);

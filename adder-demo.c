@@ -1,3 +1,5 @@
+#include "quantum-gates.h"
+
 /*
 
 Q0 ----H----.---------.----M
@@ -12,8 +14,6 @@ Q3 -------------------X----M    carry out bit
 
 #define NUMQBITS 4
 
-#include "quantum-gates.h"
-
 #define Q0 0
 #define Q1 1
 #define Q2 2
@@ -22,7 +22,7 @@ Q3 -------------------X----M    carry out bit
 int
 main()
 {
-	init();
+	init(NUMQBITS);
 	hadamard(Q0);
 	hadamard(Q1);
 	cxgate(Q2, 1 << Q0);
