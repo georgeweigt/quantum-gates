@@ -75,7 +75,7 @@ main()
 }
 ```
 
-To build and run
+Build and run
 
 ```
 gcc simple-demo.c quantum-gates.c -lm
