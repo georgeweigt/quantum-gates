@@ -1,7 +1,7 @@
 Quantum gates are rotation matrices that preserve the unit magnitude of a state
 vector.
 
-A state vector has 2<sup><i>q</i></sup> components where <i>q</i> be the number of qbits.
+A state vector has 2<sup><i>q</i></sup> components where <i>q</i> is the number of qbits.
 Each component is a complex number.
 
 The following quantum gates are implemented in `quantum-gates.c`
